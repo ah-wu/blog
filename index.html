@@ -5,7 +5,13 @@ function format(src){
 }
 function read(title){
 	xhr=new XMLHttpRequest();
-	xhr.onload=function(){ alert("Read!"); format(this.responseText);};
+	xhr.onload=function(){ 
+		if(this.statusText=="OK"){
+			format(this.responseText);
+		}else{
+			/*PASS*/
+		}
+	};
 	xhr.open("GET",`./${title}.txt`);
 	xhr.send();
 }
