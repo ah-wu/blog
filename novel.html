@@ -1,0 +1,15 @@
+<script>
+function format(src){
+	let list=src.split("\n\n");
+	document.getElementById("show").innerText=JSON.stringify(list);
+}
+function read(title){
+	xhr=new XMLHttpRequest();
+	xhr.onload=function(){ alert("Read!"); format(this.responseText);};
+	xhr.open("GET",`./${title}.txt`);
+}
+</script>
+<body onload="read('novel-txt')">
+<textarea id="src" width="50%" height="50%" oninput="format(this.value)" ></textarea>
+<div id="show"></div>
+</body>
