@@ -2,7 +2,8 @@
 function format(text){
 	let list=text.split(/\r\r|\n\n|\r\n\r\n/);
 	let result=document.getElementById("result");
-	let div=CreateElement("div");
+	result.innerHTML="";
+	let div=createElement("div");
 	for(x in list){
 		div.innerText=x;
 		result.appendChild(div);
