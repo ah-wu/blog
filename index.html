@@ -27,10 +27,14 @@ function format(text){
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
 		pdiv.style.fontSize="2em";
-		pdiv.innerHTML=`<label style="display:inline-block;
-				              width:100%;
-					      background:rgba(255,244,0,1);
-					      text-align:left" onclick="view(this,document.getElementById('${x}'))" >${title}</label>${pdiv.innerHTML}<br><br>`;
+		pdiv.innerHTML=`<button style="display:inline-block;
+					       box-shadow:none;
+				               width:100%;
+					       background:rgba(255,244,0,1);
+					       text-align:left" 
+					onclick="view(this,document.getElementById('${x}'))" >${title}</button>
+						${pdiv.innerHTML}
+					<br><br>`;
 		result.appendChild(pdiv);
 	}
 }
