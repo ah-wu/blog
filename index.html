@@ -1,8 +1,12 @@
 <script>
-function format(src){
-	let list=src.split(/\r\r|\n\n|\r\n\r\n/);
+function format(text){
+	let list=text.split(/\r\r|\n\n|\r\n\r\n/);
 	let result=document.getElementById("result");
-	result.innerText="Ready!";
+	let div=CreateElement("div");
+	for(x in list){
+		div.innerText=x;
+		result.appendChild(div);
+	}
 }
 function read(title){
 	xhr=new XMLHttpRequest();
@@ -13,7 +17,7 @@ function read(title){
 			if(this.status==OK){
 				format(this.responseText);
 			}else{
-				document.getElementById("result").innerText="No Find";
+				document.getElementById("result").innerHTML=`<h3 style="color:red">Not found</h3>;
 			}
 		}else{
 			/*PASS*/
