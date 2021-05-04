@@ -1,11 +1,11 @@
 <script>
 function view(it,div){
-	if(it.innerText=="Expand"){
-		div.innerText=div.dataset.content;
-		it.innerText="Fold";
+	if(it.style.textAlign=="left"){
+		div.style.display="block";
+		it.style.textAlign="center";
 	}else{
-		div.innerText=div.dataset.title;
-		it.innerText="Expand";
+		div.style.display="none";
+		it.style.textAlign="left";
 	}
 }
 function format(text){
@@ -18,19 +18,20 @@ function format(text){
 		let title_begin=0;
 		let title_end=list[x].indexOf("\n");
 		let content_begin=title_end+1;
-		div.dataset.title=list[x].substr(title_begin,title_end);
-		div.dataset.content=list[x].substr(content_begin);
-		div.innerText=div.dataset.title;
+		let title=list[x].substr(title_begin,title_end);
+		let content=list[x].substr(content_begin);
+		div.innerText=content;
+		div.style.display="none";
+		div.style.background="red";
 		div.id=`${x}`;
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
-		pdiv.style.background="red";
 		pdiv.style.fontSize="2em";
-		pdiv.innerHTML=`<label style="width:100%;background:yellow" onclick="view(this,document.getElementById('${x}'))">Expand</label>${pdiv.innerHTML}`;
-		let ppdiv=document.createElement("div");
-		ppdiv.appendChild(pdiv);
-		ppdiv.innerHTML=`${ppdiv.innerHTML}<br>`;
-		result.appendChild(ppdiv);
+		pdiv.innerHTML=`<label style="display:inline-block;
+				              width:100%;
+					      background:yellow;
+					      text-align:left" onclick="view(this,document.getElementById('${x}'))" >${title}</label>${pdiv.innerHTML}<br><br>`;
+		result.appendChild(pdiv);
 	}
 }
 function read(title){
