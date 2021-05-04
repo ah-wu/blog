@@ -13,17 +13,18 @@ function format(text){
 		div.dataset.content=list[x].substr(content_begin);
 		div.dataset.expand=false;
 		div.innerText=div.dataset.title;
-		div.innerHTML=`<div style="background:red">${div.innerHTML}</div>`;
+		div.innerHTML=`<br><div style="background:red">${div.innerHTML}</div><br>`;
 		div.onclick=function (){
 				console.log(this.dataset.expand);
 				if(this.dataset.expand==true){
+					console.log("Hit!");
 					this.innerText=this.dataset.title;
 					this.dataset.expand=false;
 				}else{
 					this.innerText=this.dataset.content;
 					this.dataset.expand=true;
 				}
-					this.innerHTML=`<div style="background:red">${div.innerHTML}</div>`;
+					this.innerHTML=`<br><div style="background:red">${div.innerHTML}</div><br>`;
 			    }
 		result.appendChild(div);
 	}
