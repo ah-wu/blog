@@ -16,6 +16,7 @@ function format(text){
 		div.innerHTML=`<br><div style="background:red">${div.innerHTML}</div><br>`;
 		div.onclick=function (){
 				let tmp=this.dataset.expand;
+				console.log([tmp,tmp==true]);
 				if(tmp==true){
 					console.log("Hit!");
 					this.innerText=this.dataset.title;
