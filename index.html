@@ -47,6 +47,7 @@ function read(url){
 		let OK=200;
 		if(this.readyState==DONE){
 			if(this.status==OK){
+				var tap=this.response;
 				format(this.responseText);
 			}else{
 				document.getElementById("result").innerHTML=`<h2 style="text-align:center;color:rgba(232,0,0,1)">Not found</h2>`;
@@ -55,9 +56,11 @@ function read(url){
 			/*PASS*/
 		}
 	};
+	xhr.responseType("json");
 	xhr.open("GET",url);
 	xhr.send();
 }
+	
 </script>
 <body style="font-size:2em;background:rgba(0,206,0,1);">
 <input type="search" style="font-size:inherit;width:100%;" /*oninput="read(this.value)"*/ onchange="read(this.value)" >
