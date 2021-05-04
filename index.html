@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
+                               minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
 function view(it,div){
 	if(it.style.textAlign=="left"){
@@ -34,7 +36,7 @@ function format(text){
 				               width:100%;
 					       background:rgba(255,244,0,1);
 					       text-align:left" 
-					onclick="view(this,document.getElementById('${x}'))" ><h2 style="display:inline-block">${title}</h2></button>
+					onclick="view(this,document.getElementById('${x}'))" ><h2 style="display:inline">${title}</h2></button>
 						${pdiv.innerHTML}
 				`;
 		result.appendChild(pdiv);
@@ -60,6 +62,6 @@ function read(title){
 }
 </script>
 <body style="font-size:32px;background:rgba(0,206,0,1);">
-<input type="search" style="display:inline-block;font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
+<input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
 <div id="result" style="width:100%;overflow:auto"></div>
 </body>
