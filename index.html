@@ -13,7 +13,7 @@ function format(text){
 		div.dataset.content=list[x].substr(content_begin);
 		div.dataset.expand="false";
 		div.innerText=div.dataset.title;
-		div.innerHTML=`<br><div style="background:red">${div.innerHTML}</div><br>`;
+		div.innerHTML=`<div style="background:red;font-size:48px">${div.innerHTML}</div><br>`;
 		div.onclick=function (){
 				if(this.dataset.expand=="true"){
 					console.log("Hit!");
