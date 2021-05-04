@@ -25,10 +25,12 @@ function format(text){
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
 		pdiv.style.background="red";
-		pdiv.style.font.size="48px";
-		pdiv.innerHTML=`<button style="background:yellow" onclick="view(this,document.getElementById('${x}'))">Expand</button>${pdiv.innerHTML}<br>`
-		
-		result.appendChild(pdiv);
+		pdiv.style.fontSize="48px";
+		pdiv.innerHTML=`<label style="background:yellow" onclick="view(this,document.getElementById('${x}'))">Expand</label>${pdiv.innerHTML}`;
+		let ppdiv=document.createElement("div");
+		ppdiv.appendChild(pdiv);
+		ppdiv.innerHTML=`${ppdiv.innerHTML}<br>`;
+		result.appendChild(ppdiv);
 	}
 }
 function read(title){
