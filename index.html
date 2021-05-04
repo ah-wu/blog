@@ -40,14 +40,13 @@ function format(text){
 		result.appendChild(pdiv);
 	}
 }
-function read(url){
+function read(title){
 	xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		let DONE=4;
 		let OK=200;
 		if(this.readyState==DONE){
 			if(this.status==OK){
-				console.log(this.response);
 				format(this.responseText);
 			}else{
 				document.getElementById("result").innerHTML=`<h2 style="text-align:center;color:rgba(232,0,0,1)">Not found</h2>`;
@@ -56,13 +55,11 @@ function read(url){
 			/*PASS*/
 		}
 	};
-	xhr.responseType="json";
-	xhr.open("GET",url);
+	xhr.open("GET",`./${title}.txt`);
 	xhr.send();
 }
-	
 </script>
 <body style="font-size:2em;background:rgba(0,206,0,1);">
-<input type="search" style="font-size:inherit;width:100%;" /*oninput="read(this.value)"*/ onchange="read(this.value)" >
+<input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
 <div id="result" style="width:100%;overflow:auto"></div>
 </body>
