@@ -6,6 +6,8 @@ function format(text){
 	for(x=0;x<list.length;x=x+1){
 		let div=document.createElement("div");
 		div.innerText=list[x];
+		div.innerHTML=`<br>${div.innerHTML}<br>`;
+		div.style.blacground="red";
 		result.appendChild(div);
 	}
 }
