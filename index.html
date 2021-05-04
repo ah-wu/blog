@@ -15,11 +15,12 @@ function format(text){
 		div.innerText=div.dataset.title;
 		div.innerHTML=`<div style="background:red">${div.innerHTML}</div>`;
 		div.onclick=function (){
+				console.log(this.dataset.expand);
 				if(this.dataset.expand==true){
-					this.innerText=div.dataset.title;
+					this.innerText=this.dataset.title;
 					this.dataset.expand=false;
 				}else{
-					this.innerText=div.dataset.content;
+					this.innerText=this.dataset.content;
 					this.dataset.expand=true;
 				}
 					this.innerHTML=`<div style="background:red">${div.innerHTML}</div>`;
