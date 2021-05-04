@@ -25,7 +25,8 @@ function format(text){
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
 		pdiv.style.background="red";
-		pdiv.innerHTML=`<button onclick="view(this,document.getElementById('${x}'))">Expand</button>${pdiv.innerHTML}<br>`
+		pdiv.style.font.size="48px";
+		pdiv.innerHTML=`<button style="background:yellow" onclick="view(this,document.getElementById('${x}'))">Expand</button>${pdiv.innerHTML}<br>`
 		
 		result.appendChild(pdiv);
 	}
