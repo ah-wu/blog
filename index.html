@@ -3,7 +3,7 @@ function format(text){
 	let list=text.split(/\r\r|\n\n|\r\n\r\n/);
 	let result=document.getElementById("result");
 	result.innerHTML="";
-	let div=createElement("div");
+	let div=document.createElement("div");
 	for(x in list){
 		alert(x);
 		div.innerText=x;
