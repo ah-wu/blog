@@ -1,7 +1,7 @@
 <script>
 function view(it,div){
 	if(it.style.textAlign=="left"){
-		div.style.display="block";
+		div.style.display="inline-block";
 		it.style.textAlign="center";
 	}else{
 		div.style.display="none";
@@ -30,7 +30,7 @@ function format(text){
 		pdiv.innerHTML=`<label style="display:inline-block;
 				              width:100%;
 					      background:rgba(255,244,0,1);
-					      text-align:left" onclick="view(this,document.getElementById('${x}'))" >${title}</label>${pdiv.innerHTML}<br>`;
+					      text-align:left" onclick="view(this,document.getElementById('${x}'))" >${title}</label>${pdiv.innerHTML}<br><br>`;
 		result.appendChild(pdiv);
 	}
 }
