@@ -23,6 +23,18 @@ function format(text){
 		let title=list[x].substr(title_begin,title_end);
 		let content=list[x].substr(content_begin);
 		div.innerText=content;
+		div.innerHTML=` ${div.innerHTML}
+				<button style="display:inline-block;
+					       width:100%;
+					       box-shadow:none;
+					       border-style:none;
+					       font-size:inherit;
+					       font-weight:bold;
+					       color:rgba(116,44,157,1);
+					       background:rgba(196,181,155,1);
+					       text-align:center" 
+					onclick="document.getElementById('${x}b').click()" >End of read</button>
+				`;
 		div.style.display="none";
 		div.style.background="rgba(0,184,255,1)";
 		div.id=`${x}`;
@@ -30,13 +42,15 @@ function format(text){
 		pdiv.appendChild(div);
 		pdiv.innerHTML=`<br>
 				<button style="display:inline-block;
+					       width:100%;
 					       box-shadow:none;
 					       border-style:none;
 					       font-size:inherit;
-				               width:100%;
+					       font-weight:bold;
+					       color:rgba(227,76,151,1);
 					       background:rgba(255,244,0,1);
 					       text-align:left" 
-					onclick="view(this,document.getElementById('${x}'))" ><h2 style="display:inline">${title}</h2></button>
+					onclick="view(this,document.getElementById('${x}'))" id="${x}b" >${title}</button>
 						${pdiv.innerHTML}
 				`;
 		result.appendChild(pdiv);
@@ -61,7 +75,7 @@ function read(title){
 	xhr.send();
 }
 </script>
-<body style="font-size:32px;background:rgba(0,206,0,1);">
+<body style="font-size:2em;background:rgba(0,206,0,1);">
 <input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
 <div id="result" style="width:100%;overflow:auto"></div>
 </body>
