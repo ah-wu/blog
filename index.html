@@ -1,5 +1,13 @@
 <script>
-function view(it,
+function view(it,div){
+	if(it.innerText="Expand"){
+		div.innerText=div.dataset.content;
+		it.innerText="Fold";
+	}else{
+		div.innerText=div.dataset.title;
+		it.innerText="Expand";
+	}
+}
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
 	let list=text.replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
@@ -12,6 +20,7 @@ function format(text){
 		let content_begin=title_end+1;
 		div.dataset.title=list[x].substr(title_begin,title_end);
 		div.dataset.content=list[x].substr(content_begin);
+		div.innerText=div.dataset.title;
 		div.id=`${x}`;
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
