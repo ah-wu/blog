@@ -1,6 +1,6 @@
 <script>
 function format(src){
-	let list=src.split(/[\r\r|\n\n|\r\n\r\n]/);
+	let list=src.split(/(\r\r|\n\n|\r\n\r\n)/);
 	document.getElementById("show").innerText=JSON.stringify(list);
 }
 function read(title){
