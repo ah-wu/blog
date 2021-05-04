@@ -3,10 +3,9 @@ function format(text){
 	let list=text.split(/\r\r|\n\n|\r\n\r\n/);
 	let result=document.getElementById("result");
 	result.innerHTML="";
-	let div=document.createElement("div");
-	for(x in list){
-		alert(x);
-		div.innerText=x;
+	for(x=0;x<list.length;x=x+1){
+		let div=document.createElement("div");
+		div.innerText=list[x];
 		result.appendChild(div);
 	}
 }
