@@ -16,9 +16,9 @@ function format(text){
 		div.innerHTML=`<br>${div.innerHTML}<br>`;
 		div.onclick=function (){
 				if(this.dataset.expand==true){
-					this.innerText=div.data.title;
+					this.innerText=div.dataset.title;
 				}else{
-					this.innerText=div.data.content;
+					this.innerText=div.dataset.content;
 				}
 					this.dataset.expand=(!(this.dataset.expand));
 					this.innerHTML=`<br>${div.innerHTML}<br>`;
