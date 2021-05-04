@@ -7,7 +7,7 @@ function format(text){
 	for(let x=0; x<list.length; x=x+1){
 		let div=document.createElement("div");
 		let title_begin=0;
-		let title_end=list[x].find("\n");
+		let title_end=list[x].indexOf("\n");
 		let content_begin=title_end+1;
 		div.dataset.title=list[x].substr(title_begin,title_end);
 		div.dataset.content=list[x].substr(content_begin);
