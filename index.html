@@ -6,7 +6,8 @@ function format(src){
 function read(title){
 	xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){ 
-		if(this.readyState==XMLHttpRequest.DONE && this.statusText=="OK"){
+		if(this.readyState==XMLHttpRequest.DONE /*&& this.statusText=="OK"*/){
+			console.log(this.statusText);
 			format(this.responseText);
 		}else{
 			/*PASS*/
