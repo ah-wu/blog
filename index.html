@@ -1,13 +1,29 @@
 <script>
 function format(text){
-	let list=text.split(/\r\r|\n\n|\r\n\r\n/);
+	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
+	let list=text.replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
 	let result=document.getElementById("result");
 	result.innerHTML="";
-	for(x=0;x<list.length;x=x+1){
+	for(let x=0; x<list.length; x=x+1){
 		let div=document.createElement("div");
-		div.innerText=list[x];
+		let title_begin=0;
+		let title_end=list[x].find("\n");
+		let content_begin=title_end+1;
+		div.dataset.title=list[x].substr(title_begin,title_end);
+		div.dataset.content=list[x].substr(content_begin);
+		div.dataset.expand=false;
+		div.innerText=div.dataset.title;
 		div.innerHTML=`<br>${div.innerHTML}<br>`;
-		div.style.blacground="red";
+		div.onclick=function (){
+				if(this.dataset.expand==true){
+					this.innerText=div.data.title;
+				}else{
+					this.innerText=div.data.content;
+				}
+					this.dataset.expand=(!(this.dataset.expand));
+					this.innerHTML=`<br>${div.innerHTML}<br>`;
+			    }
+		div.style.blackground="red";
 		result.appendChild(div);
 	}
 }
@@ -32,5 +48,5 @@ function read(title){
 </script>
 <body>
 <input type="search" style="width:100%;height:5%;" oninput="read(this.value)" onchange="read(this.value)" >
-<div id="result" style="width:100%;height:95%;background:green"></div>
+<div id="result" style="width:100%;height:95%;background:green;overflow:auto"></div>
 </body>
