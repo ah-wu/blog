@@ -40,7 +40,7 @@ function format(text){
 		result.appendChild(pdiv);
 	}
 }
-function read(title){
+function read(url){
 	xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		let DONE=4;
@@ -55,11 +55,11 @@ function read(title){
 			/*PASS*/
 		}
 	};
-	xhr.open("GET",`./${title}.txt`);
+	xhr.open("GET",url);
 	xhr.send();
 }
 </script>
 <body style="font-size:2em;background:rgba(0,206,0,1);">
-<input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
+<input type="search" style="font-size:inherit;width:100%;" /*oninput="read(this.value)"*/ onchange="read(this.value)" >
 <div id="result" style="width:100%;overflow:auto"></div>
 </body>
