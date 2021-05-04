@@ -1,4 +1,5 @@
 <script>
+function view(it,
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
 	let list=text.replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
@@ -11,21 +12,13 @@ function format(text){
 		let content_begin=title_end+1;
 		div.dataset.title=list[x].substr(title_begin,title_end);
 		div.dataset.content=list[x].substr(content_begin);
-		div.dataset.expand="false";
-		div.innerText=div.dataset.title;
-		div.innerHTML=`<div style="background:red;font-size:48px">${div.innerHTML}</div><br>`;
-		div.onclick=function (){
-				if(this.dataset.expand=="true"){
-					console.log("Hit!");
-					this.innerText=this.dataset.title;
-					this.dataset.expand="false";
-				}else{
-					this.innerText=this.dataset.content;
-					this.dataset.expand="true";
-				}
-					this.innerHTML=`<br><div style="background:red">${div.innerHTML}</div><br>`;
-			    }
-		result.appendChild(div);
+		div.id=`${x}`;
+		let pdiv=document.createElement("div");
+		pdiv.appendChild(div);
+		pdiv.style.background="red";
+		pdiv.innerHTML=`<button onclick="view(this,document.getElementById('${x}'))">Expand</button>${pdiv.innerHTML}<br>`
+		
+		result.appendChild(pdiv);
 	}
 }
 function read(title){
