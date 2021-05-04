@@ -26,7 +26,6 @@ function format(text){
 		div.id=`${x}`;
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
-		pdiv.style.fontSize="2em";
 		pdiv.innerHTML=`<button style="display:inline-block;
 					       box-shadow:none;
 					       border-style:none;
@@ -59,7 +58,7 @@ function read(title){
 	xhr.send();
 }
 </script>
-<body>
+<body style="font-size:2em">
 <input type="search" style="width:100%;height:5%;" oninput="read(this.value)" onchange="read(this.value)" >
 <div id="result" style="width:100%;height:95%;background:rgba(0,206,0,1);overflow:auto"></div>
 </body>
