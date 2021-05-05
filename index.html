@@ -40,7 +40,8 @@ function format(text){
 		div.id=`${x}`;
 		let pdiv=document.createElement("div");
 		pdiv.appendChild(div);
-		pdiv.innerHTML=`<button style="display:inline-block;
+		pdiv.innerHTML=`<br>
+                                <button style="display:inline-block;
 					       width:100%;
 					       box-shadow:none;
 					       border-style:none;
@@ -51,7 +52,7 @@ function format(text){
 					       text-align:left" 
 					onclick="view(this,document.getElementById('${x}'))" id="${x}b" >${title}</button>
 						${pdiv.innerHTML}
-				<br><br>`;
+				`;
 		result.appendChild(pdiv);
 	}
 }
@@ -76,6 +77,6 @@ function read(title){
 </script>
 <body style="font-size:2em;background:rgba(0,206,0,1);">
 <input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" onchange="read(this.value)" >
-<br><br>
 <div id="result" style="width:100%;overflow:auto"></div>
+<br>
 </body>
