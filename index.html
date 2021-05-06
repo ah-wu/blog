@@ -97,10 +97,8 @@ function search(srckey){
         key.innerText=srckey;
         let blogs=document.getElementsByName("blog");
         if(key.innerHTML!=""){
-alert(blogs.length);
+alert(blogs);
                 for(let x=0; x<blogs.length; x=x+1){
-alert("done");
-alert(blogs[x].dataset.title_id);
                          let title=document.getElementById(blogs[x].dataset.title_id);
                          let content=document.getElementById(blogs[x].dataset.content_id);
                          title.innerHTML=title.innerHTML
