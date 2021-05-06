@@ -102,10 +102,10 @@ function search(srckey){
                          let content=document.getElementById(blogs[x].dataset.content_id);
                          title.innerHTML=title.innerHTML
                                               .replaceAll(/<[^>]*>/g,"")
-                                              .replaceAll(key.innerHTML,"<span style='color:rgba(255,0,0,1)'>$&</span>");
+                                              .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,255,1)'>$&</span>");
                          content.innerHTML=content.innerHTML
                                                   .replaceAll(/<[^>]*>/g,"")
-                                                  .replaceAll(key.innerHTML,"<span style='color:rgba(255,0,0,1)'>$&</span>");
+                                                  .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,255,1)'>$&</span>");
                          if(title.innerHTML.indexOf("<")==-1
                             && content.innerHTML.indexOf("<")==-1){
                                blogs[x].style.display="none";
