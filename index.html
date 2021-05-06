@@ -79,7 +79,7 @@ function read_text(url,func){
 }
 function load_blog(text){
         if(text!=undefined){
-                format(txt);
+                format(text);
         }else{
                 let blogs=document.getElementById("blogs");
                 blogs.innerHTML=`<h2 style="text-align:center;
@@ -91,12 +91,12 @@ function load_blog(text){
 function search(key){
 }
 </script>
-<body onload="read_txt('./blog.txt',load_blog)" 
+<body onload="read_text('./blog.txt',load_blog)" 
       style="font-size:2em;
              background:rgba(0,206,0,1);">
 <tr>
 <input type="search" 
-       place-holder="Search in blog" 
+       placeholder="Search in blog" 
        style="font-size:inherit;width:100%;" 
        oninput="search(this.value)" 
        onchange="search(this.value)" >
