@@ -23,7 +23,7 @@ function format(text){
 		let title=list[x].substr(title_begin,title_end);
 		let content=list[x].substr(content_begin);
 		div.innerText=content;
-		div.innerHTML=`<div style="display:inline-block;
+		div.innerHTML=`<div id="${x}c" style="display:inline-block;
                                            width:100%;
                                            font-size:0.5em">${div.innerHTML}</div>
 				<button style="display:inline-block;
@@ -35,7 +35,7 @@ function format(text){
 					       color:rgba(116,44,157,1);
 					       background:rgba(196,181,155,1);
 					       text-align:center" 
-					onclick="document.getElementById('${x}b').click()" >End of read</button>
+					onclick="document.getElementById('${x}t').click()" >End of read</button>
 				`;
 		div.style.display="none";
                 div.style.width="100%";
@@ -53,13 +53,13 @@ function format(text){
 					       color:rgba(227,76,151,1);
 					       background:rgba(255,244,0,1);
 					       text-align:left" 
-					onclick="view(this,document.getElementById('${x}'))" id="${x}b" >${title}</button>
+					onclick="view(this,document.getElementById('${x}'))" id="${x}t" >${title}</button>
 						${pdiv.innerHTML}
 				`;
                 pdiv.style.display="block";
                 pdiv.className="blog";
-                pdiv.dataset.title_id=`${x}b`;
-                pdiv.dataset.content_id=`${x}`;
+                pdiv.dataset.title_id=`${x}t`;
+                pdiv.dataset.content_id=`${x}c`;
 		blogs.appendChild(pdiv);
 	}
 }
@@ -102,10 +102,10 @@ function search(srckey){
                          let content=document.getElementById(blogs[x].dataset.content_id);
                          title.innerHTML=title.innerHTML
                                               .replaceAll(/<[^>]*>/g,"")
-                                              .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,0,1)'>$&</span>");
+                                              .replaceAll(key.innerHTML,"<span style='color:rgba(255,0,0,1)'>$&</span>");
                          content.innerHTML=content.innerHTML
                                                   .replaceAll(/<[^>]*>/g,"")
-                                                  .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,0,1)'>$&</span>");
+                                                  .replaceAll(key.innerHTML,"<span style='color:rgba(255,0,0,1)'>$&</span>");
                          if(title.innerHTML.indexOf("<")==-1
                             && content.innerHTML.indexOf("<")==-1){
                                blogs[x].style.display="none";
@@ -133,7 +133,7 @@ function search(srckey){
 <input type="search" 
        placeholder="Search in blog" 
        style="font-size:inherit;width:100%;" 
-       /*oninput="search(this.value)"*/
+       oninput="search(this.value)"
        onchange="search(this.value)" >
 <div id="key" style="display:none"></div>
 </tr>
