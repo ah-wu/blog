@@ -56,6 +56,7 @@ function format(text){
 					onclick="view(this,document.getElementById('${x}'))" id="${x}b" >${title}</button>
 						${pdiv.innerHTML}
 				`;
+                pdiv.style.display="block";
                 pdiv.name="blog";
                 pdiv.dataset.title_id=`${x}b`;
                 pdiv.dataset.content_id=`${x}`;
@@ -91,7 +92,38 @@ function load_blog(text){
                                  </h2>`;
         }
 }
-function search(key){
+function search(srckey){
+        let key=document.getElementById("key");
+        key.innerText=srckey;
+        let blogs=document.getElementsByName("blog");
+        if(key.innerHTML!=""){
+                for(let x=0; x<blogs.length; x=x+1){
+                         let title=document.getElementById(blogs[x].dataset.title_id);
+                         let content=document.getElementById(blogs[x].dataset.content_id);
+                         title.innerHTML=title.innerHTML
+                                              .replaceAll(/<[^>]*>/g,"")
+                                              .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,0,1)'>$&</span>");
+                         content.innerHTML=content.innerHTML
+                                                  .replaceAll(/<[^>]*>/g,"")
+                                                  .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,0,1)'>$&</span>");
+                         if(title.innerHTML.indexOf("<")==-1
+                            && content.innerHTML.indexOf("<")==-1){
+                               blogs[x].style.display="none";
+                         }else{
+                               blogs[x].style.display="block";
+                         }
+                }
+         }else{
+                for(let x=0; x<blogs.length; x=x+1){
+                         let title=document.getElementById(blogs[x].dataset.title_id);
+                         let content=document.getElementById(blogs[x].dataset.content_id);
+                         title.innerHTML=title.innerHTML
+                                              .replaceAll(/<[^>]*>/g,"");
+                         content.innerHTML=content.innerHTML
+                                                  .replaceAll(/<[^>]*>/g,"");
+                         blogs[x].style.display="block";
+                 }
+         }
 }
 </script>
 <body onload="read_text('./blog.txt',load_blog)" 
@@ -103,6 +135,7 @@ function search(key){
        style="font-size:inherit;width:100%;" 
        oninput="search(this.value)" 
        onchange="search(this.value)" >
+<div id="key" style="display:none"></div>
 </tr>
 <tr>
 <div style="width:100%;height:100%;overflow:auto">
