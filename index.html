@@ -96,10 +96,13 @@ function search(srckey){
         let key=document.getElementById("key");
         key.innerText=srckey;
         let blogs=document.getElementsByName("blog");
+alert ("done");
         if(key.innerHTML!=""){
+alert ("done");
                 for(let x=0; x<blogs.length; x=x+1){
                          let title=document.getElementById(blogs[x].dataset.title_id);
                          let content=document.getElementById(blogs[x].dataset.content_id);
+alert ("done");
                          title.innerHTML=title.innerHTML
                                               .replaceAll(/<[^>]*>/g,"")
                                               .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,0,1)'>$&</span>");
