@@ -13,8 +13,8 @@ function view(it,div){
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
 	let list=text.replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
-	let result=document.getElementById("result");
-	result.innerHTML="";
+	let blogs=document.getElementById("blogs");
+	blogs.innerHTML="";
 	for(let x=0; x<list.length; x=x+1){
 		let div=document.createElement("div");
 		let title_begin=0;
@@ -53,35 +53,57 @@ function format(text){
 					onclick="view(this,document.getElementById('${x}'))" id="${x}b" >${title}</button>
 						${pdiv.innerHTML}
 				`;
-		result.appendChild(pdiv);
+                pdiv.name="blog";
+                pdiv.dataset.title_id=`${x}b`;
+                pdiv.dataset.content_id=`${x}`;
+		blogs.appendChild(pdiv);
 	}
 }
-function read(title){
+function read_text(url,func){
 	xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		let DONE=4;
 		let OK=200;
 		if(this.readyState==DONE){
 			if(this.status==OK){
-				format(this.responseText);
+				func(this.responseText);
 			}else{
-				document.getElementById("result").innerHTML=`<h2 style="text-align:center;color:rgba(232,0,0,1)">Not found</h2>`;
+				func(undefined);
 			}
 		}else{
 			/*PASS*/
 		}
 	};
-	xhr.open("GET",`./${title}.txt`);
+	xhr.open("GET",url);
 	xhr.send();
 }
+function load_blog(text){
+        if(text!=undefined){
+                format(txt);
+        }else{
+                let blogs=document.getElementById("blogs");
+                blogs.innerHTML=`<h2 style="text-align:center;
+                                     color:rgba(232,0,0,1)">
+                                       Cannot load blogs
+                                 </h2>`;
+        }
+}
+function search(key){
+}
 </script>
-<body style="font-size:2em;background:rgba(0,206,0,1);">
+<body onload="read_txt('./blog.txt',load_blog)" 
+      style="font-size:2em;
+             background:rgba(0,206,0,1);">
 <tr>
-<input type="search" style="font-size:inherit;width:100%;" oninput="read(this.value)" /*onchange="read(this.value)"*/ >
+<input type="search" 
+       place-holder="Search in blog" 
+       style="font-size:inherit;width:100%;" 
+       oninput="search(this.value)" 
+       onchange="search(this.value)" >
 </tr>
 <tr>
 <div style="width:100%;height:100%;overflow:auto">
-<div id="result" style="width:100%;overflow:auto"></div>
+<div id="blogs" style="width:100%;overflow:auto"></div>
 <br>
 </div>
 </tr>
