@@ -23,7 +23,9 @@ function format(text){
 		let title=list[x].substr(title_begin,title_end);
 		let content=list[x].substr(content_begin);
 		div.innerText=content;
-		div.innerHTML=`<div style="display:inline-block;font-size:0.5em">${div.innerHTML}</div>
+		div.innerHTML=`<div style="display:inline-block;
+                                           width:100%;
+                                           font-size:0.5em">${div.innerHTML}</div>
 				<button style="display:inline-block;
 					       width:100%;
 					       box-shadow:none;
@@ -36,6 +38,7 @@ function format(text){
 					onclick="document.getElementById('${x}b').click()" >End of read</button>
 				`;
 		div.style.display="none";
+                div.style.width="100%";
 		div.style.background="rgba(0,184,255,1)";
 		div.id=`${x}`;
 		let pdiv=document.createElement("div");
