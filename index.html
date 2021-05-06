@@ -57,7 +57,7 @@ function format(text){
 						${pdiv.innerHTML}
 				`;
                 pdiv.style.display="block";
-                pdiv.name="blog";
+                pdiv.className="blog";
                 pdiv.dataset.title_id=`${x}b`;
                 pdiv.dataset.content_id=`${x}`;
 		blogs.appendChild(pdiv);
@@ -95,9 +95,8 @@ function load_blog(text){
 function search(srckey){
         let key=document.getElementById("key");
         key.innerText=srckey;
-        let blogs=document.getElementsByName("blog");
+        let blogs=document.getElementsByClassName("blog");
         if(key.innerHTML!=""){
-console.log(blogs);
                 for(let x=0; x<blogs.length; x=x+1){
                          let title=document.getElementById(blogs[x].dataset.title_id);
                          let content=document.getElementById(blogs[x].dataset.content_id);
