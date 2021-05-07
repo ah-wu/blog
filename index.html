@@ -138,7 +138,8 @@ function share(it){
          let title=document.getElementById(it.dataset.title_id);
          let content=document.getElementById(it.dataset.content_id);
          let share_text=`${title.innerText}\n${content.innerText}\nSee more at:\n`;
-         navigator.share({title:share_text,
+         navigator.share({title:"Share blog",
+                          content:share_text,
                           text:share_text,
                           url:""});
 }
