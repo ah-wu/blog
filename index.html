@@ -26,6 +26,16 @@ function format(text){
 		div.innerHTML=`<div id="${x}c" style="display:inline-block;
                                            width:100%;
                                            font-size:0.5em">${div.innerHTML}</div>
+                                <button style="display:inline-block;
+                                               width:100%;
+                                               box-shadow:none;
+                                               border-style:none;
+                                               font-size:inherit;
+					       font-weight:bold;
+					       color:rgba(246,235,170,1);
+					       background:rgba(173,100,122,1);
+					       text-align:center"
+                                        onclick="share(document.getElementById('${x}b'))">Share it</button>
 				<button style="display:inline-block;
 					       width:100%;
 					       box-shadow:none;
@@ -58,6 +68,7 @@ function format(text){
 				`;
                 pdiv.style.display="block";
                 pdiv.className="blog";
+                pdiv.id="${x}b";
                 pdiv.dataset.title_id=`${x}t`;
                 pdiv.dataset.content_id=`${x}c`;
 		blogs.appendChild(pdiv);
@@ -126,16 +137,18 @@ function search(srckey){
          }
 }
 function share(it){
-navigator.share({title:"title",
-                 text:"text",
-                 url:"blog.umap.page"});
+         let title=document.getElementById(it.dataset.title_id);
+         let content=document.getElementById(it.dataset.content_id);
+         let share_text=`${title.innerText}\n${content.innerText}\nSee more at:`;
+         navigator.share({title:"Share",
+                          text:share_text,
+                          url:""});
 }
 </script>
 <body onload="read_text('./blog.txt',load_blog)" 
       style="font-size:2em;
              background:rgba(0,206,0,1);">
 <tr>
-<button onclick="share(0)" >share</button>
 <input type="search" 
        placeholder="Search in blog" 
        style="font-size:inherit;width:100%;" 
