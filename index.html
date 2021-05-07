@@ -96,11 +96,7 @@ function load_blog(text){
         if(text!=undefined){
                 format(text);
         }else{
-                let blogs=document.getElementById("blogs");
-                blogs.innerHTML=`<h2 style="text-align:center;
-                                     color:rgba(232,0,0,1)">
-                                       Cannot load blogs
-                                 </h2>`;
+                /*PASS*/
         }
 }
 function search(srckey){
@@ -136,10 +132,11 @@ function search(srckey){
                  }
          }
 }
-function share(it){
+function share(it){ 
+        /* Experimental!!! */
          let title=document.getElementById(it.dataset.title_id);
          let content=document.getElementById(it.dataset.content_id);
-         let share_text=`${title.innerText}\n${content.innerText}\nSee more at:`;
+         let share_text=`${title.innerText}\n${content.innerText}\nSee more at:\n`;
          navigator.share({title:"Share",
                           text:share_text,
                           url:""});
@@ -158,7 +155,12 @@ function share(it){
 </tr>
 <tr>
 <div style="width:100%;height:100%;overflow:auto">
-<div id="blogs" style="width:100%;overflow:auto"></div>
+<div id="blogs" style="width:100%;overflow:auto">
+<h2 style="text-align:center;
+           color:rgba(232,0,0,1)">
+      Cannot load blogs
+</h2>
+</div>
 <br>
 </div>
 </tr>
