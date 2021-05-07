@@ -11,9 +11,9 @@ function view(it,div){
 	}
 }
 function transform(src){
-	return src.replaceAll(/<br>-([^:]*):([^<]*)<br>/g,"<br><a href='$2'>$1</a><br>")
-		  .replaceAll(/<br>\$([^<]*)<br>/g,"<br><img src='$1' style='width:100%'/><br>")
-		  .replaceAll(/<br>&gt;([^<]*)<br>/g,"<br><h3 style='text-align'>$1</h3><br>");
+	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"<br><a href='$3'>$2</a><br>")
+		  .replaceAll(/(^|<br>)\$([^<]*)<br>/g,"<img src='$2' style='width:100%'/>")
+		  .replaceAll(/(^|<br>)&gt;([^<]*)<br>/g,"<h3 style='text-align:center;color:rgba(248,221,132,1)'>$2</h3>");
 }
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
