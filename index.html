@@ -12,7 +12,7 @@ function view(it,div){
 }
 function transform(src){
 	return src.replaceAll(/<br>-([^:]*):([^<]*)<br>/g,"<br><a href='$2'>$1</a><br>")
-		  .replaceAll(/<br>$([^<]*)<br>/g,"<br><img src='$1' style='width:100%'/><br>")
+		  .replaceAll(/<br>\$([^<]*)<br>/g,"<br><img src='$1' style='width:100%'/><br>")
 		  .replaceAll(/<br>&gt;([^<]*)<br>/g,"<br><h3 style='text-align'>$1</h3><br>");
 }
 function format(text){
