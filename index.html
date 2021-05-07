@@ -10,6 +10,11 @@ function view(it,div){
 		it.style.textAlign="left";
 	}
 }
+function transform(src){
+	return src.replaceAll(/<br>-([^:]*):([^<]*)<br>/g,"<br><a href='$2'>$1</a><br>")
+		  .replaceAll(/<br>$([^<]*)<br>/g,"<br><img src='$1' style='width:100%'/><br>")
+		  .replaceAll(/<br>&gt;([^<]*)<br>/g,"<br><h3 style='text-align'>$1</h3><br>");
+}
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
 	let list=text.trim().replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
@@ -23,6 +28,7 @@ function format(text){
 		let title=list[x].substr(title_begin,title_end);
 		let content=list[x].substr(content_begin);
 		div.innerText=content;
+		div.innerHTML=transform(div.innerHTML);
 		div.innerHTML=`<div id="${x}c" style="display:inline-block;
                                            width:100%;
                                            font-size:0.75em">${div.innerHTML}</div>
