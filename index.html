@@ -108,10 +108,10 @@ function search(srckey){
                          let title=document.getElementById(blogs[x].dataset.title_id);
                          let content=document.getElementById(blogs[x].dataset.content_id);
                          title.innerHTML=title.innerHTML
-                                              .replaceAll(/<[^>]*>/g,"")
+                                              .replaceAll(/<\/?span[^>]*>/g,"")
                                               .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,255,1)'>$&</span>");
                          content.innerHTML=content.innerHTML
-                                                  .replaceAll(/<[^>]*>/g,"")
+                                                  .replaceAll(/<\/?span[^>]*>/g,"")
                                                   .replaceAll(key.innerHTML,"<span style='color:rgba(255,255,255,1)'>$&</span>");
                          if(title.innerHTML.indexOf("<")==-1
                             && content.innerHTML.indexOf("<")==-1){
@@ -125,9 +125,9 @@ function search(srckey){
                          let title=document.getElementById(blogs[x].dataset.title_id);
                          let content=document.getElementById(blogs[x].dataset.content_id);
                          title.innerHTML=title.innerHTML
-                                              .replaceAll(/<[^>]*>/g,"");
+                                              .replaceAll(/<\/?span[^>]*>/g,"");
                          content.innerHTML=content.innerHTML
-                                                  .replaceAll(/<[^>]*>/g,"");
+                                                  .replaceAll(/<\/?span[^>]*>/g,"");
                          blogs[x].style.display="block";
                  }
          }
