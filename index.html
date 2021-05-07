@@ -35,8 +35,7 @@ function format(text){
 					       color:rgba(246,235,170,1);
 					       background:rgba(173,100,122,1);
 					       text-align:center"
-                                        onclick="share(document.getElementById('${x}b'))"
-                                        ondbclick="alert('Cannot share it')">Share it</button>
+                                        onclick="copy(document.getElementById('${x}b'))" >Copy blog</button>
 				<button style="display:inline-block;
 					       width:100%;
 					       box-shadow:none;
@@ -142,6 +141,12 @@ function share(it){
                           content:share_text,
                           text:share_text,
                           url:""});
+}
+function copy(it){
+         let title=document.getElementById(it.dataset.title_id);
+         let content=document.getElementById(it.dataset.content_id);
+         navigator.clipboard.writeText(`${title.innerText}\n\n${content.innerText}`);
+         alert("Copy successfully!");
 }
 </script>
 <body onload="read_text('./blog.txt',load_blog)" 
