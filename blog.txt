@@ -1,6 +1,6 @@
 人生第一博客
--主页:ah-wu.umap.page
-说实话，我也不知道改写什么。只是谁便写写，测试blog。
+-主页:https://ah-wu.umap.page
+说实话，我也不知道该写什么。只是谁便写写，测试blog。
 >标题测试
 接着是图片~
 $test.jpg
@@ -8,8 +8,8 @@ $test.jpg
 
 人生第一博客
 人生路漫漫，白鹭常相伴
--主页:ah-wu.umap.page
-说实话，我也不知道改写什么。只是谁便写写，测试blog。
+-主页:https://ah-wu.umap.page
+说实话，我也不知道该写什么。只是谁便写写，测试blog。
 >标题测试
 接着是图片~
 $test.jpg
