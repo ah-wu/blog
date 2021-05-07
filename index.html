@@ -140,6 +140,7 @@ function share(it){
          let title=document.getElementById(it.dataset.title_id);
          let content=document.getElementById(it.dataset.content_id);
          let share_text=`${title.innerText}\n${content.innerText}\nSee more at:`;
+         alert(share_text);
          navigator.share({title:"Share",
                           text:share_text,
                           url:""});
