@@ -11,7 +11,7 @@ function view(it,div){
 	}
 }
 function transform(src){
-	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"<br><a href='$3'>$2</a><br>")
+	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"$1<a href='$3'>$2</a><br>")
 		  .replaceAll(/(^|<br>)\$([^<]*)<br>/g,"<img src='$2' style='width:100%'/>")
 		  .replaceAll(/(^|<br>)&gt;([^<]*)<br>/g,"<h3 style='text-align:center;color:rgba(248,221,132,1)'>$2</h3>");
 }
