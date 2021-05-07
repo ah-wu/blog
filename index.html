@@ -125,11 +125,17 @@ function search(srckey){
                  }
          }
 }
+function share(it){
+navigator.share({title:"title",
+                 text:"text",
+                 url:"blog.umap.page"});
+}
 </script>
 <body onload="read_text('./blog.txt',load_blog)" 
       style="font-size:2em;
              background:rgba(0,206,0,1);">
 <tr>
+<button onclick="share(0)" >share</button>
 <input type="search" 
        placeholder="Search in blog" 
        style="font-size:inherit;width:100%;" 
