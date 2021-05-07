@@ -12,7 +12,7 @@ function view(it,div){
 }
 function format(text){
 	/* Unfortunately, the regex expr \r\n|\r is not the same as \r|\r\n */
-	let list=text.replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
+	let list=text.trim().replaceAll(/\r\n|\r/g,"\n").split(/\n\n/);
 	let blogs=document.getElementById("blogs");
 	blogs.innerHTML="";
 	for(let x=0; x<list.length; x=x+1){
