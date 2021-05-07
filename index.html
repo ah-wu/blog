@@ -68,7 +68,7 @@ function format(text){
 				`;
                 pdiv.style.display="block";
                 pdiv.className="blog";
-                pdiv.id="${x}b";
+                pdiv.id=`${x}b`;
                 pdiv.dataset.title_id=`${x}t`;
                 pdiv.dataset.content_id=`${x}c`;
 		blogs.appendChild(pdiv);
@@ -137,7 +137,6 @@ function search(srckey){
          }
 }
 function share(it){
-alert(it.dataset.title_id);
          let title=document.getElementById(it.dataset.title_id);
          let content=document.getElementById(it.dataset.content_id);
          let share_text=`${title.innerText}\n${content.innerText}\nSee more at:`;
