@@ -145,8 +145,9 @@ function share(it){
 function copy(it){
          let title=document.getElementById(it.dataset.title_id);
          let content=document.getElementById(it.dataset.content_id);
-         navigator.clipboard.writeText(`${title.innerText}\n\n${content.innerText}`);
-         alert("Copy successfully!");
+         navigator.clipboard.writeText(`${title.innerText}\n\n${content.innerText}`).then(
+                  function(){alert("Copy successfully!");},
+                  function(){alert("Copy failed");});
 }
 </script>
 <body onload="read_text('./blog.txt',load_blog)" 
