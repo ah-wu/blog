@@ -1,8 +1,9 @@
 <script>
 function media(url){
 let md=document.createElement("img");
-md.onload="alert('yes')";
-md.onerror="alert('no')";
+md.onload=function(){alert('yes');};
+md.onerror=function(){"alert('no')"};
+md.src=url;
 return md;
 }
 </script>
