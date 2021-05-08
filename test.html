@@ -1,23 +1,10 @@
 <script>
-function video_handle(it){
-      console.log(it.videoHeight);
-      if(it.videoHeight==0){
-            it.parentNode.removeChild(it);
-      }else{
-            /*PASS*/
-      }
-}
-function audio_handle(it){
-      if(Number.isNaN(it.duration)==true){
-            it.parentNode.removeChild(it);
-      }else{
-            /*PASS*/
-      }
-}
 function img(url){
       let img=document.createElement("img");
       img.src=url;
       img.style.width="100%";
+      img.style.display="none";
+      img.onload="this.style.display=''";
       img.onerror=function(){this.parentNode.replaceChild(video(url),this)};
       return img;
 }
