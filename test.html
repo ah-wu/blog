@@ -2,7 +2,7 @@
 function media(it,url){
      let md=document.createElement("img");
      md.src=url;
-     md.load();
+     console.log(md.naturalHeight);
      if(md.naturalHeight==0){
           md=document.createElement("video");
           md.src=url;
