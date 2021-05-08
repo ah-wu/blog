@@ -18,22 +18,22 @@ function img(url){
       let img=document.createElement("img");
       img.src=url;
       img.style.width="100%";
-      img.onerror=`this.parentNode.replaceChild(video("${url}"),this)`;
+      img.onerror=function(){this.parentNode.replaceChild(video(url),this)};
       return img;
 }
 function video(url){
       let video=document.createElement("video");
       video.src=url;
       video.style.width="100%";
-      video.onerror=`this.parentNode.replaceChild(audio("${url}"),this)`;
-      video.ondurationchange="if(this.videoHeight==0){this.error()}else{/*PASS*/}"
+      video.onerror=function(){this.parentNode.replaceChild(audio(url),this)};
+      video.ondurationchange=function(){if(this.videoHeight==0){this.onerror()}else{/*PASS*/}};
       return video;
 }
 function audio(url){
       let audio=document.createElement("audio");
       audio.src=url;
       audio.style.width="100%";
-      audio.onerror=`this.parentNode.replaceChild(a("${url}"),this)`;
+      audio.onerror=function(){this.parentNode.replaceChild(a(url),this)};
       return audio;
 }
 function a(url){
