@@ -1,4 +1,18 @@
 <script>
+function vedio_handle(it){
+      if(it.videoHeight==0){
+            it.parentNode.removeChild(it);
+      }else{
+            /*PASS*/
+      }
+}
+function audio_handle(it){
+      if(Number.isNaN(it.duration)==true){
+            it.parentNode.removeChild(it);
+      }else{
+            /*PASS*/
+      }
+}
 function media(it,url){
       let md=document.createElement("div");
       /*static count=0;*/
@@ -7,9 +21,9 @@ function media(it,url){
       md.innerHTML=`
 <img onerror="this.parentNode.removeChild(this)" src="${url}"
      style="width:100%" />
-<video durationchange="if(this.videoHeight==0){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}"  
+<video durationchange="video_handle(this)" controls src="${url}"  
      style="width:100%"></video>
-<audio durationchange="if(Number.isNaN(this.duration)==true){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}" 
+<audio durationchange="audio_handle(this)" controls src="${url}" 
      style="width:100%"></audio>`;
 
       it.appendChild(md);
