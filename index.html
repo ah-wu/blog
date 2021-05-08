@@ -12,11 +12,9 @@ function view(it,div){
 }
 function media(last,next){
 	if(last.style.display!="none"){
-		console.log(last.error.code);
-		if(last.error.code==MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED){
+		console.log(last);
 			last.style.display="none";
 			next.style.display="";
-		}
 	}else{
 		/*PASS*/
 	}
