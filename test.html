@@ -21,9 +21,10 @@ function media(it,url){
       md.innerHTML=`
 <img onerror="this.parentNode.removeChild(this)" src="${url}"
      style="width:100%" />
-<video onerror="this.parentNode.removeChild(this)" controls src="${url}"  
+<video onerror="this.parentNode.removeChild(this)" 
+       durationchange="video_handle(it)" controls src="${url}"  
      style="width:100%"></video>
-<audio durationchange="audio_handle(this)" controls src="${url}" 
+<audio onerror="this.parentNode.removeChild(this)" controls src="${url}" 
      style="width:100%"></audio>`;
 
       it.appendChild(md);
