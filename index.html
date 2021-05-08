@@ -10,13 +10,13 @@ function view(it,div){
 		it.style.textAlign="left";
 	}
 }
-function media(img, video){
-img.style.display="none";
-video.style.display="";
+function media(old, new){
+old.style.display="none";
+new.style.display="";
 }
 function transform(src){
 	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"$1<a href='$3' style='font-size:1.5em'>$2</a><br>")
-		  .replaceAll(/(^|<br>)\$([^<]*)<br>/g,"<img src='$2' onerror='media(this,document.getElementById(\"v$2\"))' style='width:100%'/><video controls id='v$2' src='$2' style='display:none;width:100%'></video>")
+		  .replaceAll(/(^|<br>)\$([^<]*)<br>/g,"<img src='$2' onerror='media(this,document.getElementById(\"a$2\"))' style='width:100%'/><audio id='a$2' controls src='$2' style='display:none;width:100%' onerror='media(this,document.getElementById(\"v$2\"))' ></audio><video controls id='v$2' src='$2' style='display:none;width:100%'></video>")
 		  .replaceAll(/(^|<br>)&gt;([^<]*)<br>/g,"<h2 style='font-size:1.8em;text-align:center;color:rgba(248,221,132,1)'>$2</h2>");
 }
 function format(text){
