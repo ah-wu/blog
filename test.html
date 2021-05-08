@@ -1,0 +1,35 @@
+<script>
+function media(url){
+     let md=document.createElement("img");
+     md.src=url;
+     if(md.naturalHeight==0){
+          md=document.createElement("video");
+          md.src=url;
+          if(md.videoHeight==0){
+              md=document.createElement("audio");
+              md.src=url;
+              if(Number.isNaN(md.duration)==true){
+                   md=document.createElement("a");
+                   md.href=url;
+              }else{
+                   /*PASS*/
+              }
+          }else{
+              /*PASS*/
+          }
+      }else{
+          /*PASS*/
+      }
+      md.style.width="100%";
+      document.body.appendChild(md);
+}
+function test(){
+media("test.jpg");
+media("PXL_20210507_121341889.mp4");
+media("GAI周延 - 在下霍元甲.mp3");
+media("blog.txt");
+}
+</script>
+<body onload="test()">
+<h2>Media test</h2>
+</body>
