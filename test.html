@@ -1,19 +1,17 @@
 <script>
 function media(it,url){
-     let md=document.createElement("img");
+     var md=document.createElement("img");
      md.src=url;
-     console.log(md.naturalHeight);
      if(md.naturalHeight==0){
           md=document.createElement("video");
           md.src=url;
-          md.load();
           if(md.videoHeight==0){
               md=document.createElement("audio");
               md.src=url;
-              md.load();
               if(Number.isNaN(md.duration)==true){
                    md=document.createElement("a");
                    md.href=url;
+                   md.innerText="click here";
               }else{
                    /*PASS*/
               }
