@@ -32,8 +32,8 @@ function video(url){
 }
 function audio(url){
       let audio=document.createElement("audio");
-      audio.controls=true;
       audio.src=url;
+      audio.controls=true;
       audio.style.width="100%";
       audio.onerror=function(){this.parentNode.replaceChild(a(url),this)};
       return audio;
