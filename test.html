@@ -14,21 +14,37 @@ function audio_handle(it){
             /*PASS*/
       }
 }
+function img(url){
+      let img=document.createElement("img");
+      img.src=url;
+      img.style.width="100%";
+      img.onerror=`this.parentNode.replaceChild(video("${url}"),this)`;
+      return img;
+}
+function video(url){
+      let video=document.createElement("video");
+      video.src=url;
+      video.style.width="100%";
+      video.onerror=`this.parentNode.replaceChild(audio("${url}"),this)`;
+      video.ondurationchange="if(this.videoHeight==0){this.error()}else{/*PASS*/}"
+      return video;
+}
+function audio(url){
+      let audio=document.createElement("audio");
+      audio.src=url;
+      audio.style.width="100%";
+      audio.onerror=`this.parentNode.replaceChild(a("${url}"),this)`;
+      return audio;
+}
+function a(url){
+      let a=document.createElement("a");
+      a.href=url;
+      a.style.width="100%";
+      a.innerText=`Click Here\n`;
+      return a;
+}
 function media(it,url){
-      let md=document.createElement("div");
-      /*static count=0;*/
-      md.style.width="100%";
-
-      md.innerHTML=`
-<img onerror="this.parentNode.removeChild(this)" src="${url}"
-     style="width:100%" />
-<video onerror="this.parentNode.removeChild(this)" 
-       ondurationchange="video_handle(this)" controls src="${url}"  
-     style="width:100%"></video>
-<audio onerror="this.parentNode.removeChild(this)" controls src="${url}" 
-     style="width:100%"></audio>`;
-
-      it.appendChild(md);
+      it.appendChild(img(url));
 }
 function test(it){
 media(it,"test.jpg");
