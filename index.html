@@ -10,9 +10,9 @@ function view(it,div){
 		it.style.textAlign="left";
 	}
 }
-function media(old,new){
-old.style.display="none";
-new.style.display="";
+function media(last,next){
+last.style.display="none";
+next.style.display="";
 }
 function transform(src){
 	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"$1<a href='$3' style='font-size:1.5em'>$2</a><br>")
