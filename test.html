@@ -1,26 +1,27 @@
 <script>
 function media(it,url){
-     var md=document.createElement("img");
-     md.src=url;
-     if(md.naturalHeight==0){
-          var md=document.createElement("video");
-          md.src=url;
-          md.load();
-          if(md.videoHeight==0){
-              var md=document.createElement("audio");
-              md.src=url;
-              if(Number.isNaN(md.duration)==true){
-                   var md=document.createElement("a");
-                   md.href=url;
-                   md.innerText="click here\n";
+     let md=undefined;
+     var md1=document.createElement("img");
+     var md2=document.createElement("video");
+     var md3=document.createElement("audio");
+     var md4=document.createElement("a");
+     md1.src=url;
+     if(md1.naturalHeight==0){
+          md2.src=url;
+          if(md2.videoHeight==0){
+              md3.src=url;
+              if(Number.isNaN(md3.duration)==true){
+                   md4.href=url;
+                   md4.innerText="click here\n";
+                   md=md4;
               }else{
-                   /*PASS*/
+                   md=md3;
               }
           }else{
-              /*PASS*/
+              md=md2;
           }
       }else{
-          /*PASS*/
+          md=md1;
       }
       md.style.width="100%";
       it.appendChild(md);
