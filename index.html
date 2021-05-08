@@ -11,8 +11,15 @@ function view(it,div){
 	}
 }
 function media(last,next){
-last.style.display="none";
-next.style.display="";
+	if(last.style.display!="none"){
+		console.log(last.error.code);
+		if(last.error.code==MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED){
+			last.style.display="none";
+			next.style.display="";
+		}
+	}else{
+		/*PASS*/
+	}
 }
 function transform(src){
 	return src.replaceAll(/(^|<br>)-([^:]*):([^<]*)<br>/g,"$1<a href='$3' style='font-size:1.5em'>$2</a><br>")
