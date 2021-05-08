@@ -10,9 +10,10 @@ function view(it,div){
 		it.style.textAlign="left";
 	}
 }
+var Toplast;
 function media(last,next){
 	if(last.style.display!="none"){
-		var Toplast=last;
+		Toplast=last;
 			last.style.display="none";
 			next.style.display="";
 	}else{
