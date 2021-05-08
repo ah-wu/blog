@@ -4,6 +4,10 @@ let img=document.getElementById(`${it.id}-img`);
 let video=document.getElementById(`${it.id}-video`);
 let audio=document.getElementById(`${it.id}-audio`);
 let a=document.getElementById(`${it.id}-a`);
+img.style.display="none";
+video.style.display="none";
+audio.style.display="none";
+a.style.display="none";
      if(img.naturalHeight==0){
           if(video.videoHeight==0){
               if(Number.isNaN(audio.duration)==true){
@@ -31,16 +35,16 @@ function media(it,url){
       md.innerHTML=`
 <img src="${url}" 
      id="${md.id}-img" 
-     style="display:none;width:100%" />
+     style="width:100%" />
 <video src="${url}" 
      id="${md.id}-video" 
-     style="display:none;width:100%"></video>
+     style="width:100%"></video>
 <audio src="${url}" 
      id="${md.id}-audio" 
-     style="display:none;width:100%"></audio>
+     style="width:100%"></audio>
 <a href="${url}" 
      id="${md.id}-a"
-     style="display:none;width:100%"></a>`;
+     style="width:100%"></a>`;
 
       it.appendChild(md);
       count=count+1;
