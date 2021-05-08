@@ -1,6 +1,7 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
+function media(it,url){
 function img(url){
       let img=document.createElement("img");
       img.src=url;
@@ -32,8 +33,7 @@ function video(url){
                         }
                      };
       video.ondurationchange=function(){
-                                 if(this.style.display=="none"
-                                    && this.videoHeight==0){
+                                 if(this.videoHeight==0){
                                        this.onerror();
                                  }else{
                                        this.style.display="";
@@ -57,7 +57,6 @@ function audio(url){
       audio.ondurationchange=function(){this.style.display=""};
       return audio;
 }
-function media(it,url){
       it.appendChild(img(url));
 }
 function test(it){
