@@ -5,13 +5,14 @@ function media(it,url){
      if(md.naturalHeight==0){
           var md=document.createElement("video");
           md.src=url;
+          md.load();
           if(md.videoHeight==0){
               var md=document.createElement("audio");
               md.src=url;
               if(Number.isNaN(md.duration)==true){
                    var md=document.createElement("a");
                    md.href=url;
-                   md.innerText="click here";
+                   md.innerText="click here\n";
               }else{
                    /*PASS*/
               }
