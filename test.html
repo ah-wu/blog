@@ -7,23 +7,27 @@ let a=document.getElementById(`${it.id}-a`);
      if(img.naturalHeight==0){
           if(video.videoHeight==0){
               if(Number.isNaN(audio.duration)==true){
+                   console.log(it.src);
                     img.style.display="none";
                     video.style.display="none";
                     audio.style.display="none";
                     a.style.display="";
               }else{
+                   console.log(it.src);
                     img.style.display="none";
                     video.style.display="none";
                     audio.style.display="";
                     a.style.display="none";
               }
           }else{
+               console.log(it.src);
               img.style.display="none";
               video.style.display="";
               audio.style.display="none";
               a.style.display="none";
           }
       }else{
+           console.log(it.src);
           img.style.display="";
           video.style.display="none";
           audio.style.display="none";
@@ -53,7 +57,7 @@ function media(it,url){
      style="width:100%"></audio>
 <a href="${url}" 
      id="{md.id}-a"
-     style="width:100%"></a>`;
+     style="width:100%"><h3>Click Here</h3></a>`;
 
       it.appendChild(md);
       count=count+1;
