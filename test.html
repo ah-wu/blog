@@ -1,41 +1,4 @@
 <script>
-function media_load(it){
-let img=document.getElementById(`${it.id}-img`);
-let video=document.getElementById(`${it.id}-video`);
-let audio=document.getElementById(`${it.id}-audio`);
-let a=document.getElementById(`${it.id}-a`);
-     if(img.naturalHeight==0){
-          if(video.videoHeight==0){
-              if(Number.isNaN(audio.duration)==true){
-                   console.log(it.src);
-                    img.style.display="none";
-                    video.style.display="none";
-                    audio.style.display="none";
-                    a.style.display="";
-              }else{
-                   console.log(it.src);
-                    img.style.display="none";
-                    video.style.display="none";
-                    audio.style.display="";
-                    a.style.display="none";
-              }
-          }else{
-               console.log(it.src);
-              img.style.display="none";
-              video.style.display="";
-              audio.style.display="none";
-              a.style.display="none";
-          }
-      }else{
-           console.log(it.src);
-          img.style.display="";
-          video.style.display="none";
-          audio.style.display="none";
-          a.style.display="none";
-      }
-it.onload=null;
-}
-var count=0;
 function media(it,url){
       let md=document.createElement("div");
       /*static count=0;*/
@@ -46,18 +9,15 @@ function media(it,url){
                 )`;
 
       md.innerHTML=`
-<img src="${url}" 
+<img onerror="this.parentNode.removeChild(this)" src="${url}" 
      id="${md.id}-img" 
      style="width:100%" />
-<video controls src="${url}" 
+<video durationchange="if(this.videoHeight==0){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}" 
      id="${md.id}-video" 
      style="width:100%"></video>
-<audio controls src="${url}" 
+<audio durationchange="if(Number.isNaN(this.duration)==true){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}" 
      id="${md.id}-audio" 
-     style="width:100%"></audio>
-<a href="${url}" 
-     id="{md.id}-a"
-     style="width:100%"><h3>Click Here</h3></a>`;
+     style="width:100%"></audio>`;
 
       it.appendChild(md);
       count=count+1;
