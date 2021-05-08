@@ -24,6 +24,7 @@ function img(url){
 function video(url){
       let video=document.createElement("video");
       video.src=url;
+      video.controls=true;
       video.style.width="100%";
       video.onerror=function(){this.parentNode.replaceChild(audio(url),this)};
       video.ondurationchange=function(){if(this.videoHeight==0){this.onerror()}else{/*PASS*/}};
@@ -31,6 +32,7 @@ function video(url){
 }
 function audio(url){
       let audio=document.createElement("audio");
+      audio.controls=true;
       audio.src=url;
       audio.style.width="100%";
       audio.onerror=function(){this.parentNode.replaceChild(a(url),this)};
