@@ -7,15 +7,27 @@ let a=document.getElementById(`${it.id}-a`);
      if(img.naturalHeight==0){
           if(video.videoHeight==0){
               if(Number.isNaN(audio.duration)==true){
-                   a.style.display="";
+                    img.style.display="none";
+                    video.style.display="none";
+                    audio.style.display="none";
+                    a.style.display="";
               }else{
-                   audio.style.display="";
+                    img.style.display="none";
+                    video.style.display="none";
+                    audio.style.display="";
+                    a.style.display="none";
               }
           }else{
+              img.style.display="none";
               video.style.display="";
+              audio.style.display="none";
+              a.style.display="none";
           }
       }else{
           img.style.display="";
+          video.style.display="none";
+          audio.style.display="none";
+          a.style.display="none";
       }
 it.onload=null;
 }
@@ -32,16 +44,16 @@ function media(it,url){
       md.innerHTML=`
 <img src="${url}" 
      id="${md.id}-img" 
-     style="display:none;width:100%" />
+     style="width:100%" />
 <video controls src="${url}" 
      id="${md.id}-video" 
-     style="display:none;width:100%"></video>
+     style="width:100%"></video>
 <audio controls src="${url}" 
      id="${md.id}-audio" 
-     style="display:none;width:100%"></audio>
+     style="width:100%"></audio>
 <a href="${url}" 
      id="{md.id}-a"
-     style="display:none;width:100%"></a>`;
+     style="width:100%"></a>`;
 
       it.appendChild(md);
       count=count+1;
