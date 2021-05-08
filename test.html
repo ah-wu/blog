@@ -1,5 +1,5 @@
 <script>
-function vedio_handle(it){
+function video_handle(it){
       if(it.videoHeight==0){
             it.parentNode.removeChild(it);
       }else{
@@ -21,7 +21,7 @@ function media(it,url){
       md.innerHTML=`
 <img onerror="this.parentNode.removeChild(this)" src="${url}"
      style="width:100%" />
-<video durationchange="video_handle(this)" controls src="${url}"  
+<video onerror="this.parentNode.removeChild(this)" controls src="${url}"  
      style="width:100%"></video>
 <audio durationchange="audio_handle(this)" controls src="${url}" 
      style="width:100%"></audio>`;
