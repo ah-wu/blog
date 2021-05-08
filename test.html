@@ -1,13 +1,16 @@
 <script>
-function media(url){
+function media(it,url){
      let md=document.createElement("img");
      md.src=url;
+     md.load();
      if(md.naturalHeight==0){
           md=document.createElement("video");
           md.src=url;
+          md.load();
           if(md.videoHeight==0){
               md=document.createElement("audio");
               md.src=url;
+              md.load();
               if(Number.isNaN(md.duration)==true){
                    md=document.createElement("a");
                    md.href=url;
@@ -20,16 +23,17 @@ function media(url){
       }else{
           /*PASS*/
       }
+      md.style.display="block";
       md.style.width="100%";
-      document.body.appendChild(md);
+      it.appendChild(md);
 }
-function test(){
-media("test.jpg");
-media("PXL_20210507_121341889.mp4");
-media("GAI周延 - 在下霍元甲.mp3");
-media("blog.txt");
+function test(it){
+media(it,"test.jpg");
+media(it,"PXL_20210507_121341889.mp4");
+media(it,"GAI周延 - 在下霍元甲.mp3");
+media(it,"blog.txt");
 }
 </script>
-<body onload="test()">
+<body onload="test(this)">
 <h2>Media test</h2>
 </body>
