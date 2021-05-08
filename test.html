@@ -1,30 +1,49 @@
 <script>
-function media(it,url){
-     let md=undefined;
-     var md1=document.createElement("img");
-     var md2=document.createElement("video");
-     var md3=document.createElement("audio");
-     var md4=document.createElement("a");
-     md1.src=url;
-     if(md1.naturalHeight==0){
-          md2.src=url;
-          if(md2.videoHeight==0){
-              md3.src=url;
-              if(Number.isNaN(md3.duration)==true){
-                   md4.href=url;
-                   md4.innerText="click here\n";
-                   md=md4;
+function media_load(it){
+let img=document.getElementById(`${it.id}-img`);
+let video=document.getElementById(`${it.id}-video`);
+let audio=document.getElementById(`${it.id}-audio`);
+let a=document.getElementById(`${it.id}-a`);
+     if(img.naturalHeight==0){
+          if(video.videoHeight==0){
+              if(Number.isNaN(audio.duration)==true){
+                   a.style.display="";
               }else{
-                   md=md3;
+                   audio.style.display="";
               }
           }else{
-              md=md2;
+              video.style.display="";
           }
       }else{
-          md=md1;
+          img.style.display="";
       }
+it.onload=null;
+}
+function media(it,url){
+      let md=document.createElement("div");
+      static count=0;
       md.style.width="100%";
+      md.id=`media[${count}]`;
+      md.onload=`media_onload(
+                 document.getElementById("${md.id}")
+                )`;
+
+      md.innerHTML=`
+<img src="${url}" 
+     id="${md.id}-img" 
+     style="display:none;width:100%" />
+<video src="${url}" 
+     id="${md.id}-video" 
+     style="display:none;width:100%"></video>
+<audio src="${url}" 
+     id="${md.id}-audio" 
+     style="display:none;width:100%"></audio>
+<a href="${url}" 
+     id="${md.id}-a"
+     style="display:none;width:100%"></a>`;
+
       it.appendChild(md);
+      count=count+1;
 }
 function test(it){
 media(it,"test.jpg");
