@@ -3,24 +3,16 @@ function media(it,url){
       let md=document.createElement("div");
       /*static count=0;*/
       md.style.width="100%";
-      md.id=`media[${count}]`;
-      md.onload=`media_onload(
-                 document.getElementById("${md.id}")
-                )`;
 
       md.innerHTML=`
-<img onerror="this.parentNode.removeChild(this)" src="${url}" 
-     id="${md.id}-img" 
+<img onerror="this.parentNode.removeChild(this)" src="${url}"
      style="width:100%" />
-<video durationchange="if(this.videoHeight==0){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}" 
-     id="${md.id}-video" 
+<video durationchange="if(this.videoHeight==0){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}"  
      style="width:100%"></video>
 <audio durationchange="if(Number.isNaN(this.duration)==true){this.parentNode.removeChild(this);}else{/*PASS*/}" controls src="${url}" 
-     id="${md.id}-audio" 
      style="width:100%"></audio>`;
 
       it.appendChild(md);
-      count=count+1;
 }
 function test(it){
 media(it,"test.jpg");
