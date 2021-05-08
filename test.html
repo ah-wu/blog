@@ -5,7 +5,14 @@ function img(url){
       img.style.width="100%";
       img.style.display="none";
       img.onload=function(){this.style.display=""};
-      img.onerror=function(){this.parentNode.replaceChild(video(url),this)};
+      img.onerror=function(){
+                      if(this.style.display=="none"){
+                            this.parentNode
+                                .replaceChild(video(url),this);
+                      }else{
+                            /*PASS*/
+                      }
+                  };
       return img;
 }
 function video(url){
@@ -14,8 +21,22 @@ function video(url){
       video.controls=true;
       video.style.width="100%";
       video.style.display="none";
-      video.onerror=function(){this.parentNode.replaceChild(audio(url),this)};
-      video.ondurationchange=function(){if(this.videoHeight==0){this.onerror()}else{this.style.display=""}};
+      video.onerror=function(){
+                        if(this.style.display=="none"){
+                              this.parentNode
+                                  .replaceChild(audio(url),this);
+                        }else{
+                              /*PASS*/
+                        }
+                     };
+      video.ondurationchange=function(){
+                                 if(this.style.display=="none"
+                                    && this.videoHeight==0){
+                                       this.onerror();
+                                 }else{
+                                       this.style.display="";
+                                 }
+                             };
       return video;
 }
 function audio(url){
@@ -24,16 +45,15 @@ function audio(url){
       audio.controls=true;
       audio.style.width="100%";
       audio.style.display="none";
-      audio.onerror=function(){this.parentNode.replaceChild(a(url),this)};
+      audio.onerror=function(){
+                        if(this.style.display=="none"){
+                              this.parentNode.removeChild(this);
+                        }else{
+                             /*PASS*/
+                        }
+                    };
       audio.ondurationchange=function(){this.style.display=""};
       return audio;
-}
-function a(url){
-      let a=document.createElement("a");
-      a.href=url;
-      a.style.width="100%";
-      a.innerText=`Click Here\n`;
-      return a;
 }
 function media(it,url){
       it.appendChild(img(url));
