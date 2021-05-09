@@ -87,7 +87,13 @@ function format(text){
 	}
 }
 function read_text(url,func){
-        fetch(url).then(res=>res.text())
+        fetch(url).then(res=>{
+                               if(res.ok==true){
+                                   return res.text();
+                               }else{
+                                   return undefined;
+                               }
+                             })
                   .then(str=>func(str));
 }
 function load_blog(text){
