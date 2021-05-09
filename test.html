@@ -8,8 +8,9 @@ function media(id,urls){
       if(urls==""){
            return div;
       }else{
-            let url=urls.substr(0,urls.indexOf(" "));
-            urls=urls.substr(urls.indexOf(" ")+1);
+            urls=urls.split(" ");
+            let url=urls[0];
+            urls=urls.slice(1).join(" ");
             console.log(url);
             fetch(url,{method:"HEAD"}).then(
                 function(response){
@@ -43,6 +44,11 @@ function media(id,urls){
                          div.parentNode
                             .replaceChild(media(id,urls),div);
                     }
+                 },
+                 function(error){
+                     let div=document.getElementById(id);
+                     div.parentNode
+                        .replaceChild(media(id,urls),div);
                  });
               return div;
           }
@@ -53,7 +59,7 @@ media(1,"test.jpg"));
 it.appendChild(
 media(2,"PXL_20210507_121341889.mp4"));
 it.appendChild(
-media(3,"GAI周延 - 在下霍元甲.mp3"));
+media(3,"GAI周延%20-%20在下霍元甲.mp3"));
 it.appendChild(
 media(4,"blog.txt utx.jpg test.jpg"));
 }
