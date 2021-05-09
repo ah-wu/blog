@@ -13,7 +13,7 @@ function img(url){
                             this.parentNode
                                 .replaceChild(video(url),this);
                       }else{
-                            /*PASS*/
+                            this.onerror=null;
                       }
                   };
       return img;
@@ -24,6 +24,14 @@ function video(url){
       video.controls=true;
       video.style.width="100%";
       video.style.display="none";
+      video.onerror=function(){
+                      if(this.style.display=="none"){
+                            this.parentNode
+                                .replaceChild(audio(url),this);
+                      }else{
+                            video.onerror=null;
+                      }
+                   };
       video.ondurationchange=function(){
                                  if(this.videoHeight==0||this.videoWidth==0){
                                        this.parentNode
