@@ -109,7 +109,7 @@ function read_text(url,func){
         fetch(url).then(
              function(res){
                  if(res.ok==true){
-                      res.blob.text().then(
+                      res.body.blob().text().then(
                          function(str){func(str);},
                          function(str){func(undefined);}
                       );
