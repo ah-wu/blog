@@ -24,22 +24,13 @@ function video(url){
       video.controls=true;
       video.style.width="100%";
       video.style.display="none";
-    /*  video.onerror=function(){
-                        if(this.style.display=="none"){
-                              this.parentNode
-                                  .replaceChild(audio(url),this);
-                        }else{
-                              /PASS/
-                        }
-                     };*/
       video.ondurationchange=function(){
-                                 if(this.style.display=="none"
-                                    && (this.videoHeight==0
-                                        ||this.videoWidth==0)){
+                                 if(this.readState=HTMLMediaElement.HAVE_NOTHING){
                                        this.parentNode
                                            .replaceChild(audio(url),this);
                                  }else{
                                        this.style.display="";
+                                       this.ondurationchange=null;
                                  }
                              };
       return video;
@@ -50,14 +41,23 @@ function audio(url){
       audio.controls=true;
       audio.style.width="100%";
       audio.style.display="none";
-      audio.onerror=function(){
+     /* audio.onerror=function(){
                         if(this.style.display=="none"){
                               this.parentNode.removeChild(this);
                         }else{
-                             /*PASS*/
+                             /PASS/
                         }
-                    };
-      audio.ondurationchange=function(){this.style.display=""};
+                    };*/
+      /*audio.ondurationchange=function(){this.style.display=""};*/
+      audio.ondurationchange=function(){
+                                 if(this.readState=HTMLMediaElement.HAVE_NOTHING){
+                                       this.parentNode
+                                           .removeChild(this);
+                                 }else{
+                                       this.style.display="";
+                                       this.ondurationchange=null;
+                                 }
+                             };
       return audio;
 }
       it.appendChild(img(url));
