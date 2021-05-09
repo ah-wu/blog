@@ -1,40 +1,50 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
-function media(id,url){
+function media(id,urls){
       let div=document.createElement("div");
       div.style.display="none";
       div.id=id;
-      fetch(url,{method:"HEAD"}).then(
-           function(response){
-               let div=document.getElementById(id);
-               if(response.ok==true){
-                    let mda=undefined;
-                    let type=response.headers.get("Content-Type");
-                    type=type.substr(0,type.indexOf("/"));
-                    if(type=="image"){
-                        mda=document.createElement("img");
-                    }else if(type=="video"||type=="audio"){
-                        mda=document.createElement(type);
-                        mda.controls=true;
+      if(urls==""){
+           return div;
+      }else{
+            let url=urls.substr(0,urls.indexOf(" "));
+            urls=urls.substr(url.indexOf(" ")+1);
+            fetch(url,{method:"HEAD"}).then(
+                function(response){
+                    let div=document.getElementById(id);
+                    if(response.ok==true){
+                         let mda=undefined;
+                         let type=response.headers.get("Content-Type");
+                         type=type.substr(0,type.indexOf("/"));
+                         if(type=="image"){
+                              mda=document.createElement("img");
+                         }else if(type=="video"||type=="audio"){
+                              mda=document.createElement(type);
+                              mda.controls=true;
+                         }else{
+                              /*PASS*/
+                         }
+                         if(mda!=undefined){
+                              mda.src=url;
+                              mda.style.width="100%";
+                              mda.onerror=function(){
+                                              this.parentNode
+                                                  .replaceChild(media(id,urls),this);
+                                          };
+                              div.parentNode
+                                 .replaceChild(mda,div);
+                         }else{
+                              div.parentNode
+                                 .replaceChild(media(id,urls),div);
+                         }
                     }else{
-                        /*PASS*/
-                    }
-                    if(mda!=undefined){
-                         mda.src=url;
-                         mda.style.width="100%";
                          div.parentNode
-                            .replaceChild(mda,div);
-                    }else{
-                         div.parentNode
-                            .removeChild(div);
+                            .replaceChild(media(id,urls),div);
                     }
-                }else{
-                     div.parentNode
-                        .removeChild(div);
-                }
-             });
-      return div;
+                 });
+              return div;
+          }
 } 
 function test(it){
 it.appendChild(
@@ -44,7 +54,7 @@ media(2,"PXL_20210507_121341889.mp4"));
 it.appendChild(
 media(3,"GAI周延 - 在下霍元甲.mp3"));
 it.appendChild(
-media(4,"blog.txt"));
+media(4,"blog.txt utx.jpg test.jpg"));
 }
 </script>
 <body onload="test(document.getElementById('sh'))">
