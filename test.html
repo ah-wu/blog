@@ -1,10 +1,6 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
-function type(url){
-     let rs=await fetch(url);
-     alert(rs.headers.get("Content-Type"));
-}
 function media(id,url){
       let div=document.createElement("div");
       div.style.display="none";
@@ -53,5 +49,4 @@ media(4,"blog.txt"));
 <body onload="test(document.getElementById('sh'))">
 <h2>Media test</h2>
 <div id="sh" ></div>
-<input onchange="type(this.value)" style="width:100%"/>
 </body>
