@@ -7,22 +7,15 @@ function img(url){
       img.src=url;
       img.style.width="100%";
       img.style.display="none";
-      img.onload=function(){
-                     if(this.naturalHeight!=0){
-                          this.style.display="";
-                     }else{
-                          this.parentNode
-                                .replaceChild(video(url),this);
-                     }
-                  };
-      /*img.onerror=function(){
+      img.onload=function(){this.style.display=""};
+      img.onerror=function(){
                       if(this.style.display=="none"){
                             this.parentNode
                                 .replaceChild(video(url),this);
                       }else{
-                            /PASS/
+                            /*PASS*/
                       }
-                  };*/
+                  };
       return img;
 }
 function video(url){
@@ -39,13 +32,13 @@ function video(url){
                               /*PASS*/
                         }
                      };
-      video.ondurationchange=function(){
+      /*video.ondurationchange=function(){
                                  if(this.videoHeight==0){
                                        this.onerror();
                                  }else{
                                        this.style.display="";
                                  }
-                             };
+                             };*/
       return video;
 }
 function audio(url){
