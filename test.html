@@ -24,21 +24,24 @@ function video(url){
       video.controls=true;
       video.style.width="100%";
       video.style.display="none";
-      video.onerror=function(){
+    /*  video.onerror=function(){
                         if(this.style.display=="none"){
                               this.parentNode
                                   .replaceChild(audio(url),this);
                         }else{
-                              /*PASS*/
+                              /PASS/
                         }
-                     };
-      /*video.ondurationchange=function(){
-                                 if(this.videoHeight==0){
-                                       this.onerror();
+                     };*/
+      video.ondurationchange=function(){
+                                 if(this.style.display=="none"
+                                    && (this.videoHeight==0
+                                        ||this.videoWidth==0)){
+                                       this.parentNode
+                                           .replaceChild(audio(url),this);
                                  }else{
                                        this.style.display="";
                                  }
-                             };*/
+                             };
       return video;
 }
 function audio(url){
