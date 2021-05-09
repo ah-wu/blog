@@ -87,38 +87,8 @@ function format(text){
 	}
 }
 function read_text(url,func){
-/*
-	xhr=new XMLHttpRequest();
-	xhr.onreadystatechange=function(){
-		let DONE=4;
-		let OK=200;
-		if(this.readyState==DONE){
-			if(this.status==OK){
-				func(this.responseText);
-			}else{
-				func(undefined);
-			}
-		}else{
-			/PASS/
-		}
-	};
-	xhr.open("GET",url);
-	xhr.send();
-
-*/
-        fetch(url).then(
-             function(res){
-                 if(res.ok==true){
-                      res.text().then(
-                         function(str){func(str);},
-                         function(str){func(undefined);}
-                      );
-                 }else{
-                      func(undefined);
-                 }
-              },
-              function(err){func(undefined);}
-         );
+        fetch(url).then(res=>res.text())
+                  .then(str=>func(str));
 }
 function load_blog(text){
             if(text!=undefined){
