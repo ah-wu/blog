@@ -25,7 +25,7 @@ function video(url){
       video.style.width="100%";
       video.style.display="none";
       video.ondurationchange=function(){
-                                 if(this.readState=HTMLMediaElement.HAVE_NOTHING){
+                                 if(this.videoHeight==0||this.videoWidth==0){
                                        this.parentNode
                                            .replaceChild(audio(url),this);
                                  }else{
