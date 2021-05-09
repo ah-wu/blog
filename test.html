@@ -5,82 +5,49 @@ function type(url){
      let rs=await fetch(url);
      alert(rs.headers.get("Content-Type"));
 }
-function media(it,url){
-function img(url){
-      let img=document.createElement("img");
-      img.src=url;
-      img.style.width="100%";
-      img.style.display="none";
-      img.onload=function(){
-                     if(this.style.display=="none"){
-                           this.style.display="";
-                     }else{
-                           img.onload=function(){};
-                     }
-                 };
-      img.onerror=function(){
-                      if(this.style.display=="none"){
-                            this.parentNode
-                                .replaceChild(video(url),this);
-                      }else{
-                            this.onerror=function(){};
-                      }
-                  };
-      return img;
-}
-function video(url){
-      let video=document.createElement("video");
-      video.src=url;
-      video.controls=true;
-      video.style.width="100%";
-      video.style.display="none";
-      video.onerror=function(){
-                      if(this.style.display=="none"){
-                            this.parentNode
-                                .replaceChild(audio(url),this);
-                      }else{
-                            video.onerror=function(){};
-                      }
-                    };
-      video.ondurationchange=function(){
-                                 if(this.videoHeight==0||this.videoWidth==0){
-                                       this.onerror();
-                                 }else{
-                                       this.style.display="";
-                                       this.ondurationchange=function(){};
-                                 }
-                             };
-      return video;
-}
-function audio(url){
-      let audio=document.createElement("audio");
-      audio.src=url;
-      audio.controls=true;
-      audio.style.width="100%";
-      audio.style.display="none";
-      audio.onerror=function(){
-                        if(this.style.display=="none"){
-                              this.parentNode.removeChild(this);
-                        }else{
-                              this.onerror=function(){};
-                        }
-                     };
-      audio.ondurationchange=function(){
-                                 if(this.style.display=="none"){
-                                      this.style.display="";
-                                 }else{
-                                      this.ondurationchange=function(){};
-                                 }
-                             };
-      return audio;
-}
-      it.appendChild(img(url));
-}
+function media(id,url){
+      let div=document.createElement("div");
+      div.style.display="none";
+      div.id=id;
+      fetch(url,{method:"HEAD"}).then(
+           function(response){
+               let div=document.getElementById(id);
+               if(response.ok==true){
+                    let mda=undefined;
+                    let type=response.headers.get("Content-Type");
+                    type=type.substr(0,type.indexOf("/"));
+                    if(type=="image"){
+                        mda=document.createElement("img");
+                    }else if(type=="video"||type=="audio"){
+                        mda=document.createElement(type);
+                        mda.controls=true;
+                    }else{
+                        /*PASS*/
+                    }
+                    if(mda!=undefined){
+                         mda.style.width="100%";
+                         div.parentNode
+                            .replaceChild(mda,div);
+                    }else{
+                         div.parentNode
+                            .removeChild(div);
+                    }
+                }else{
+                     div.parentNode
+                        .removeChild(div);
+                }
+             });
+      return div;
+} 
 function test(it){
-media(it,"test.jpg");
-media(it,"PXL_20210507_121341889.mp4");
-media(it,"GAI周延 - 在下霍元甲.mp3");
-media(it,"blog.txt");
+it.appendChild(
+media(1,"test.jpg"));
+it.appendChild(
+media(2,"PXL_20210507_121341889.mp4"));
+it.appendChild(
+media(3,"GAI周延 - 在下霍元甲.mp3"));
+it.appendChild(
+media(4,"blog.txt"));
 }
 </script>
 <body onload="test(document.getElementById('sh'))">
