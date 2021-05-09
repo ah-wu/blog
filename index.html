@@ -10,7 +10,6 @@ function view(it,div){
 		it.style.textAlign="left";
 	}
 }
-var Toplast;
 function media(last,next){
 	last.style.display="none";
         next.style.display="";
@@ -97,7 +96,6 @@ function read_text(url,func){
                   .then(str=>func(str));
 }
 function load_blog(text){
-            alert(text);
             if(text!=undefined){
                  format(text);
             }else{
