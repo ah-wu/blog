@@ -7,15 +7,22 @@ function img(url){
       img.src=url;
       img.style.width="100%";
       img.style.display="none";
-      img.onload=function(){this.style.display=""};
-      img.onerror=function(){
+      img.onload=function(){
+                     if(this.naturalHeight!=0){
+                          this.style.display="";
+                     }else{
+                          this.parentNode
+                                .replaceChild(video(url),this);
+                     }
+                  };
+      /*img.onerror=function(){
                       if(this.style.display=="none"){
                             this.parentNode
                                 .replaceChild(video(url),this);
                       }else{
                             /*PASS*/
                       }
-                  };
+                  };*/
       return img;
 }
 function video(url){
@@ -69,16 +76,4 @@ media(it,"blog.txt");
 <body onload="test(document.getElementById('sh'))">
 <h2>Media test</h2>
 <div id="sh" ></div>
-<h3>Another Test</h3>
-<picture style="width:100%">
-<source srcset="test.jpg">
-</picture>
-<picture style="width:100%">
-<source srcset="test.jpg">
-<video controls src="test.jpg" style="width:100%"></video>
-</picture>
-<picture style="width:100%">
-<source srcset="PXL_20210507_121341889.mp4">
-<video controls src="PXL_20210507_121341889.mp4" style="width:100%"></video>
-</picture>
 </body>
