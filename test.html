@@ -7,13 +7,19 @@ function img(url){
       img.src=url;
       img.style.width="100%";
       img.style.display="none";
-      img.onload=function(){this.style.display=""};
+      img.onload=function(){
+                     if(this.style.display=="none"){
+                           this.style.display="";
+                     }else{
+                           img.onload=function(){};
+                     }
+                 };
       img.onerror=function(){
                       if(this.style.display=="none"){
                             this.parentNode
                                 .replaceChild(video(url),this);
                       }else{
-                            this.onerror=null;
+                            this.onerror=function(){};
                       }
                   };
       return img;
@@ -29,16 +35,15 @@ function video(url){
                             this.parentNode
                                 .replaceChild(audio(url),this);
                       }else{
-                            video.onerror=null;
+                            video.onerror=function(){};
                       }
-                   };
+                    };
       video.ondurationchange=function(){
                                  if(this.videoHeight==0||this.videoWidth==0){
-                                       this.parentNode
-                                           .replaceChild(audio(url),this);
+                                       this.onerror();
                                  }else{
                                        this.style.display="";
-                                       this.ondurationchange=null;
+                                       this.ondurationchange=function(){};
                                  }
                              };
       return video;
@@ -49,21 +54,18 @@ function audio(url){
       audio.controls=true;
       audio.style.width="100%";
       audio.style.display="none";
-     /* audio.onerror=function(){
+      audio.onerror=function(){
                         if(this.style.display=="none"){
                               this.parentNode.removeChild(this);
                         }else{
-                             /PASS/
+                              this.onerror=function(){};
                         }
-                    };*/
-      /*audio.ondurationchange=function(){this.style.display=""};*/
+                     };
       audio.ondurationchange=function(){
-                                 if(this.readState=HTMLMediaElement.HAVE_NOTHING){
-                                       this.parentNode
-                                           .removeChild(this);
+                                 if(this.style.display=="none"){
+                                      this.style.display="";
                                  }else{
-                                       this.style.display="";
-                                       this.ondurationchange=null;
+                                      this.ondurationchange=function(){};
                                  }
                              };
       return audio;
