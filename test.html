@@ -1,16 +1,22 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
-function media(id,urls){
+function media(id,urls,url_end=1){
       let div=document.createElement("div");
       div.style.display="none";
       div.id=id;
       if(urls==""){
            return div;
       }else{
-            urls=urls.split(/ +/);
-            let url=urls[0];
-            urls=urls.slice(1).join(" ");
+            urls=urls.split(" ");
+            let url=urls.slice(0,url_end).join(" ");
+            if(url_end==urls.length){
+                 urls=urls.slice(1).join(" ");
+                 url_end=1;
+            }else{
+                 urls=urls.join(" ");
+                 url_end=url_end+1;
+            }
             fetch(url,{method:"HEAD"}).then(
                 function(response){
                    let div=document.getElementById(id);
@@ -31,23 +37,23 @@ function media(id,urls){
                               mda.style.width="100%";
                               mda.onerror=function(){
                                               this.parentNode
-                                                  .replaceChild(media(id,urls),this);
+                                                  .replaceChild(media(id,urls,url_end),this);
                                           };
                               div.parentNode
                                  .replaceChild(mda,div);
                          }else{
                               div.parentNode
-                                 .replaceChild(media(id,urls),div);
+                                 .replaceChild(media(id,urls,url_end),div);
                          }
                     }else{
                          div.parentNode
-                            .replaceChild(media(id,urls),div);
+                            .replaceChild(media(id,urls,url_end),div);
                     }
                  },
                  function(error){
                      let div=document.getElementById(id);
                      div.parentNode
-                        .replaceChild(media(id,urls),div);
+                        .replaceChild(media(id,urls,url_end),div);
                  });
               return div;
           }
