@@ -61,7 +61,7 @@ function text(id,str){
 }
 function make(id,str){
     let strs=str.split(/\r\n|\r|\n/);
-    let node=document.getElementById("");
+    let node=document.getElementById(id);
     node.innerHTML="";
     for(let x=0; x<strs.length; x=x+1){
         str=strs[x];
@@ -79,6 +79,6 @@ function make(id,str){
 </script>
 <body>
 <textarea oninput="make('sh',this.value)" 
-style="width:100%; overflow:auto"></textarea>
+style="width:100%;height:30%;overflow:auto"></textarea>
 <div id="sh" ></div>
 </body>
