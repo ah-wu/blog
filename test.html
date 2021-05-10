@@ -51,21 +51,34 @@ function media(id,urls){
                  });
               return div;
           }
-} 
-function test(it){
-it.appendChild(
-media(1,"test.jpg"));
-it.appendChild(
-media(2,"PXL_20210507_121341889.mp4"));
-it.appendChild(
-media(3,"GAI周延%20-%20在下霍元甲.mp3"));
-it.appendChild(
-media(4,"blog.txt utx.jpg test.jpg"));
-it.appendChild(
-media(5,"elephant.png elephant.gif"));
+}
+function text(id,str){
+    let div=document.createElement("div");
+    div.id=id;
+    div.style.width="100%";
+    div.innerText=str;
+    return div;
+}
+function make(id,str){
+    let strs=str.split(/\r\n|\r|\n/);
+    let node=document.getElementById("");
+    node.innerHTML="";
+    for(let x=0; x<strs.length; x=x+1){
+        str=strs[x];
+        switch(str[0]){
+            case "+":
+               node.appendChild(media(x,str.substr(1)));
+               break;
+            case "=":
+               str=str.substr(1);
+            default:
+               node.appendChild(text(x,str));
+         }
+     }
 }
 </script>
-<body onload="test(document.getElementById('sh'))">
-<h2>Media test</h2>
+<body>
+<textarea oninput="make('sh',this.value)" 
+style="width:100%; overflow:auto"></textarea>
 <div id="sh" ></div>
 </body>
