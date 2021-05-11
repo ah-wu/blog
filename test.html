@@ -63,21 +63,61 @@ function text(str){
     div.innerText=str;
     return div;
 }
+function title(str){
+    let button=document.createElement("button");
+    button.className="title";
+    button.style.width="100%";
+    button.style.box-shadow="none";
+    button.style.border-style="none";
+    button.innerText=str;
+    button.onclick=function(){
+                       let content=this.nextSibling;
+                       if(content.style.display==""){
+                           content.style.display="none";
+                       }else{
+                           content.style.display="";
+                       }
+                   };
+    return button;
+}
+function content(){
+    let div=document.createElement("div");
+    div.className="content";
+    div.style.width="100%";
+    return div;
+}
 function make(id,str){
     let strs=str.split(/\r\n|\r|\n/);
     let node=document.getElementById(id);
     node.innerHTML="";
+    node.className="blog";
     for(let x=0; x<strs.length; x=x+1){
         str=strs[x];
         switch(str[0]){
             case "+":
                node.appendChild(media(str.substr(1)));
                break;
+            case ">":
+               if(node.className=="content"){
+                    node=node.parentNode;
+               }else{
+                    /*PASS*/
+               }
+               node.appendChild(title(str.substr(1)));
+               let snode=content();
+               node.appendChild(snode);
+               node=snode;
+               break;
             case "=":
                str=str.substr(1);
             default:
                node.appendChild(text(str));
          }
+     }
+     if(node.className=="content"){
+         node=node.parentNode;
+     }else{
+         /*PASS*/
      }
 }
 </script>
