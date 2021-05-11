@@ -88,6 +88,25 @@ function content(){
     div.style.width="100%";
     return div;
 }
+function end(){
+    let button=document.createElement("button");
+    button.className="end";
+    button.style.width="100%";
+    button.style.fontSize="2em";
+    button.style.textAlign="center";
+    button.style.boxShadow="none";
+    button.style.borderStyle="none";
+    button.innerText="End of Read";
+    button.onclick=function(){
+                       let content=this.parentNode;
+                       if(content.style.display==""){
+                           content.style.display="none";
+                       }else{
+                           content.style.display="";
+                       }
+                   };
+    return button;
+}
 function make(id,str){
     let strs=str.split(/\r\n|\r|\n/);
     let node=document.getElementById(id);
@@ -101,6 +120,7 @@ function make(id,str){
                break;
             case ">":
                if(node.className=="content"){
+                    node.appendChild(end());
                     node=node.parentNode;
                }else{
                     /*PASS*/
@@ -117,6 +137,7 @@ function make(id,str){
          }
      }
      if(node.className=="content"){
+         node.appendChild(end());
          node=node.parentNode;
      }else{
          /*PASS*/
