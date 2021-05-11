@@ -72,7 +72,10 @@ function text(str){
        div.className="text";
        div.style.width="100%";
        div.innerText=str;
-       return div;
+       let pre=document.createElement("pre");
+       pre.style.width="100%";
+       pre.appendChild(div);
+       return pre;
     }else{
        let br=document.createElement("br");
        return br;
