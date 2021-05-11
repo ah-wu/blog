@@ -1,6 +1,16 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
+function read_text(url){
+        return fetch(url).then(res=>{
+                               if(res.ok==true){
+                                   return res.text();
+                               }else{
+                                   return undefined;
+                               }
+                             })
+                  .then(str=>str);
+}
 function media(urls,url_end=1){
       let div=document.createElement("div");
       div.style.display="none";
@@ -121,7 +131,7 @@ function blank(){
     div.innerHTML="<br><br>";
     return div;
 }
-function make(id,str){
+async function make(id,str){
     let strs=str.split(/\r\n|\r|\n/);
     let node=document.getElementById(id);
     node.innerHTML="";
@@ -144,6 +154,14 @@ function make(id,str){
                let snode=content();
                node.appendChild(snode);
                node=snode;
+               break;
+            case "$":
+               let insert=await read_text(str.substr(1));
+               let inserts=insert.split(/\r\n|\r|\n/);
+               for(let y=0;y<inserts.length; y=y+1){
+                   insert=inserts[y];
+                   strs.splice((x+1)+y,0,insert);
+               }
                break;
             case "=":
                str=str.substr(1);
