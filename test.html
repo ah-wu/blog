@@ -57,11 +57,16 @@ function media(urls,url_end=1){
           }
 }
 function text(str){
-    let div=document.createElement("div");
-    div.className="text";
-    div.style.width="100%";
-    div.innerText=str;
-    return div;
+    if(str!=""){
+       let div=document.createElement("div");
+       div.className="text";
+       div.style.width="100%";
+       div.innerText=str;
+       return div;
+    }else{
+       let br=document.createElement("br");
+       return br;
+    }
 }
 function title(str){
     let button=document.createElement("button");
