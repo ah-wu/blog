@@ -1,10 +1,9 @@
 <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0
                                minimum-scale=1.0 maximum-scale=1.0 user-scalable=no"/>
 <script>
-function media(id,urls,url_end=1){
+function media(urls,url_end=1){
       let div=document.createElement("div");
       div.style.display="none";
-      div.id=id;
       if(urls==""){
            return div;
       }else{
@@ -19,7 +18,6 @@ function media(id,urls,url_end=1){
             }
             fetch(url,{method:"HEAD"}).then(
                 function(response){
-                   let div=document.getElementById(id);
                     if(response.ok==true){
                          let mda=undefined;
                          let type=response.headers.get("Content-Type");
@@ -35,32 +33,32 @@ function media(id,urls,url_end=1){
                          if(mda!=undefined){
                               mda.src=url;
                               mda.style.width="100%";
+                              mda.className="media";
                               mda.onerror=function(){
                                               this.parentNode
-                                                  .replaceChild(media(id,urls,url_end),this);
+                                                  .replaceChild(media(urls,url_end),this);
                                           };
                               div.parentNode
                                  .replaceChild(mda,div);
                          }else{
                               div.parentNode
-                                 .replaceChild(media(id,urls,url_end),div);
+                                 .replaceChild(media(urls,url_end),div);
                          }
                     }else{
                          div.parentNode
-                            .replaceChild(media(id,urls,url_end),div);
+                            .replaceChild(media(urls,url_end),div);
                     }
                  },
                  function(error){
-                     let div=document.getElementById(id);
                      div.parentNode
-                        .replaceChild(media(id,urls,url_end),div);
+                        .replaceChild(media(urls,url_end),div);
                  });
               return div;
           }
 }
-function text(id,str){
+function text(str){
     let div=document.createElement("div");
-    div.id=id;
+    div.className="text";
     div.style.width="100%";
     div.innerText=str;
     return div;
@@ -73,12 +71,12 @@ function make(id,str){
         str=strs[x];
         switch(str[0]){
             case "+":
-               node.appendChild(media(x,str.substr(1)));
+               node.appendChild(media(str.substr(1)));
                break;
             case "=":
                str=str.substr(1);
             default:
-               node.appendChild(text(x,str));
+               node.appendChild(text(str));
          }
      }
 }
