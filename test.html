@@ -67,19 +67,12 @@ function media(urls,url_end=1){
           }
 }
 function text(str){
-    if(str!=""){
-       let div=document.createElement("div");
-       div.className="text";
-       div.style.width="100%";
-       div.innerText=str;
-       let pre=document.createElement("pre");
-       pre.style.width="100%";
-       pre.appendChild(div);
-       return pre;
-    }else{
-       let br=document.createElement("br");
-       return br;
-    }
+      let pre=document.createElement("pre");
+      pre.className="text";
+      pre.style.width="100%";
+      pre.style.display="inline";
+      pre.innerText=`${str}\n`;
+      return pre;
 }
 function title(str){
     let button=document.createElement("button");
