@@ -70,7 +70,7 @@ function text(str){
       let pre=document.createElement("pre");
       pre.className="text";
       pre.style.width="100%";
-      pre.overflowWrap="anywhere";
+      pre.whiteSpace="pre-wrap";
       pre.style.display="inline";
       pre.innerText=`${str}\n`;
       return pre;
