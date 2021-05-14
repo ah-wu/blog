@@ -130,6 +130,14 @@ function blank(){
     div.innerHTML="<br><br>";
     return div;
 }
+function link(href){
+    let a=document.createElement("a");
+    a.className="link";
+    a.style.width="100%";
+    a.href=href;
+    a.innerText=`🔗${href}`;
+    return a;
+}
 async function make(id,str){
     let strs=str.split(/\r\n|\r|\n/);
     let node=document.getElementById(id);
@@ -141,6 +149,9 @@ async function make(id,str){
             case "+":
                node.appendChild(media(str.substr(1)));
                break;
+            case "-":
+               node.appendChild(link(str.substr(1)));
+               break;
             case ">":
                if(node.className=="content"){
                     node.appendChild(end());
@@ -148,11 +159,15 @@ async function make(id,str){
                }else{
                     /*PASS*/
                }
-               node.appendChild(blank());
-               node.appendChild(title(str.substr(1)));
-               let snode=content();
-               node.appendChild(snode);
-               node=snode;
+               if(str.substr(1)!=""){
+                     node.appendChild(blank());
+                     node.appendChild(title(str.substr(1)));
+                     let snode=content();
+                     node.appendChild(snode);
+                     node=snode;
+               }else{
+                    /*PASS*/
+               }
                break;
             case "$":
                let insert=await read_text(str.substr(1));
