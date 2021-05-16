@@ -70,8 +70,8 @@ function text(str){
       let pre=document.createElement("pre");
       pre.className="text";
 
-    /*  pre.style.wordWrap="break-word";
-      pre.style.whiteSpace="pre-wrap";*/
+      pre.style.wordWrap="break-word";
+      pre.style.whiteSpace="pre-wrap";
 
       pre.style.width="100%";
       pre.style.display="inline";
@@ -130,7 +130,8 @@ function blank(){
     div.className="blank";
     div.style.width="100%";
     div.style.background="red";
-    div.innerHTML="<br><br>";
+    div.style.fontSize="2em";
+    div.innerHTML="<br>";
     return div;
 }
 function link(href){
