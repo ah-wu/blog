@@ -69,8 +69,10 @@ function media(urls,url_end=1){
 function text(str){
       let pre=document.createElement("pre");
       pre.className="text";
-      pre.style.overflowWrap="break-word";
+
+      pre.style.wordWrap="break-word";
       pre.style.whiteSpace="pre-wrap";
+
       pre.style.width="100%";
       pre.style.display="inline";
       pre.innerText=`${str}\n`;
