@@ -107,7 +107,9 @@ function end(){
     button.style.textAlign="center";
     button.style.boxShadow="none";
     button.style.borderStyle="none";
+
     button.appendChild(text("End of Read"));
+
     button.onclick=function(){
                        let content=this.parentNode;
                        if(content.style.display==""){
