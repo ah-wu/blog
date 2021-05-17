@@ -66,7 +66,7 @@ function media(urls,url_end=1){
 function text(str){
       let pre=document.createElement("pre");
       pre.className="text";
-      pre.style.wordWrap="break-word";
+      pre.style.overflowWrap="break-word";
       pre.style.whiteSpace="pre-wrap";
       pre.style.width="100%";
       pre.style.display="inline";
@@ -77,9 +77,7 @@ function title(str){
     let button=document.createElement("button");
     button.className="title";
     button.style.width="100%";
-  /*  button.style.display="grid";
-    button.style.margin="auto";*/
-    button.style.fontSize="2em";
+    button.style.fontSize="1.5em";
     button.style.textAlign="center";
     button.style.boxShadow="none";
     button.style.borderStyle="none";
@@ -105,7 +103,7 @@ function end(){
     let button=document.createElement("button");
     button.className="end";
     button.style.width="100%";
-    button.style.fontSize="2em";
+    button.style.fontSize="1.5em";
     button.style.textAlign="center";
     button.style.boxShadow="none";
     button.style.borderStyle="none";
@@ -125,7 +123,7 @@ function blank(){
     div.className="blank";
     div.style.width="100%";
     div.style.background="red";
-    div.style.fontSize="2em";
+    div.style.fontSize="1.1em";
     div.innerHTML="<br>";
     return div;
 }
@@ -137,10 +135,9 @@ function link(href){
     a.innerText=`${href}`;
     return a;
 }
-async function make(id,str){
+async function blog(str){
     let strs=str.split(/\r\n|\r|\n/);
-    let node=document.getElementById(id);
-    node.innerHTML="";
+    let node=document.createElement("div");
     node.className="blog";
     for(let x=0; x<strs.length; x=x+1){
         str=strs[x];
@@ -188,4 +185,10 @@ async function make(id,str){
      }else{
          /*PASS*/
      }
+     return node;
+}
+function make(id,str){
+    let node=document.getElementById(id);
+    node.innerHTML="";
+    blog(str).then(ret=>node.appendChild(ret));
 }
